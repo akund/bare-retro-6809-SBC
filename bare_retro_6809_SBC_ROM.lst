@@ -1,25 +1,267 @@
 AS09 Assembler for M6809 [1.42].                                     Page    1
 --------------------------------- merge.a09 ----------------------------------
 
-1297 lines read, no errors in pass 1.
+-------------------------------- Symbol Table --------------------------------
+
+              Symbol   Value        Decimal
+
+           APLstatus : $7fe3          32739
+        BASICprocess : $e000          57344
+    BASIC_PROCESS_ID : $0020             32
+       BasicCallBack : $7ff0          32752
+           BrkPtAddr : $7fbd          32701
+           BrkPtInst : $7fbf          32703
+            BrkPtOff : $0000              0
+      BrkPtTriggered : $0001              1
+         BSS_SEG_ORG : $7fbd          32701
+            BYTE2MON : $ead0          60112
+        BYTE2MONPORT : $ead0          60112
+           ByteCount : $0000              0
+     CheckSum16_ROM0 : $d359          54105
+                  CR : $000d             13
+                 CRA : $d801          55297
+                 CRB : $d803          55299
+      DEBUG_MON_PORT : $d000          53248
+          DELAY_10MS : $e9c2          59842
+           DHEX2TEXT : $ead6          60118
+         DISAXICORWP : $e954          59732
+      ENABLE_MON_INT : $00bf            191
+          ENAXICORWP : $e993          59795
+                FIRQ : $eb09          60169
+   GV_StackBeginAddr : $7fbd          32701
+       getCheckSum16 : $ea47          59975
+            HEXBYTE2 : $eab0          60080
+     HEXBYTE2MONPORT : $eab0          60080
+            HEXWORD2 : $ea7b          60027
+     HEXWORD2MONPORT : $ea7b          60027
+          INT_VECTOR : $fff2          65522
+         IntVectFIRQ : $7ff6          32758
+          IntVectIRQ : $7ff8          32760
+          IntVectNMI : $7ffc          32764
+        IntVectSTART : $7ffe          32766
+         IntVectSWI1 : $7ffa          32762
+         IntVectSWI2 : $7ff4          32756
+         IntVectSWI3 : $7ff2          32754
+                 IRQ : $eb4b          60235
+      isKeyboardData : $e000          57344
+      KeyboardRbHead : $7fe4          32740
+      KeyboardRbSize : $0008              8
+      KeyboardRbTail : $7fe5          32741
+     KeyboardRbuffer : $7fe6          32742
+   LV_StackBeginAddr : $7fbd          32701
+                loop : $e0b2          57522
+  MONITOR_PROCESS_ID : $0010             16
+         MON_VERSION : $e10e          57614
+         MonSavReg_S : $7fee          32750
+             NewAddr : $0004              4
+                 NMI : $eb4b          60235
+              Offset : $0002              2
+               PORTA : $d800          55296
+               PORTB : $d802          55298
+              PUTSTR : $ea6c          60012
+            print_De : $ea6c          60012
+             RAM_END : $7fff          32767
+             RAM_ORG : $0000              0
+            RbDectCR : $7fe2          32738
+AS09 Assembler for M6809 [1.42].                                     Page    2
+--------------------------------- merge.a09 ----------------------------------
+
+              RbHead : $7fc0          32704
+              RbSize : $0020             32
+              RbTail : $7fc1          32705
+             Rbuffer : $7fc2          32706
+              RdAddr : $0000              0
+            RdRepeat : $0002              2
+               RESET : $e069          57449
+        ROMcheckSTR0 : $e9cb          59851
+        ROMcheckSTR1 : $e9da          59866
+        ROMcheckSTR2 : $e9e7          59879
+        ROMcheckSTR3 : $ea00          59904
+            ROM0_ORG : $e000          57344
+            ROM1_ORG : $8000          32768
+       ROM_Integrity : $fff0          65520
+         SELECTBANK0 : $e907          59655
+         SELECTBANK1 : $e910          59664
+        SRecCheckSum : $0001              1
+              STR_BP : $e737          59191
+             STR_BP1 : $e751          59217
+      STR_CMDinvalid : $e8a0          59552
+          STR_CMD_LD : $e58e          58766
+       STR_CMD_LDBAS : $e81c          59420
+    STR_CMD_LDBASEND : $e834          59444
+         STR_CMD_LD2 : $e5af          58799
+         STR_CMD_LD3 : $e5c0          58816
+         STR_CMD_LD4 : $e5d5          58837
+          STR_CMD_rd : $e3ba          58298
+          STR_CMD_wr : $e44a          58442
+         STR_COMMAND : $e151          57681
+          STR_EWdone : $e4ca          58570
+             STR_EW1 : $e49a          58522
+             STR_EW2 : $e4a4          58532
+             STR_EW3 : $e4b3          58547
+             STR_EW4 : $e4b8          58552
+           STR_EW_CS : $e4e1          58593
+              STR_GO : $e6b9          59065
+         STR_MONITOR : $e116          57622
+             STR_QBP : $e7c1          59329
+            STR_QBP1 : $e7d6          59350
+              STR_ST : $e6f7          59127
+         STR_VERSION : $e134          57652
+                SWI1 : $eb4b          60235
+                SWI2 : $eb4b          60235
+                SWI3 : $eb4b          60235
+   sAPL_KeyboardData : $e000          57344
+             sCMDbas : $e87c          59516
+              sCMDbp : $e769          59241
+              sCMDew : $e4ee          58606
+            sCMDextr : $e8bb          59579
+              sCMDgo : $e6c6          59078
+            sCMDhelp : $e37e          58238
+         sCMDinvalid : $e8b4          59572
+              sCMDld : $e5e6          58854
+           sCMDldbas : $e839          59449
+             sCMDqbp : $e7ed          59373
+              sCMDrd : $e38d          58253
+             sCMDStp : $e706          59142
+              sCMDwr : $e403          58371
+          sExtrNByte : $e8df          59615
+           sHEX2TEXT : $eae9          60137
+         sHEX2TEXT_1 : $eaf3          60147
+         sHEX2TEXT_2 : $eaf5          60149
+AS09 Assembler for M6809 [1.42].                                     Page    3
+--------------------------------- merge.a09 ----------------------------------
+
+        sMONITORMENU : $e2fe          58110
+       sMONITORSTART : $e2dc          58076
+        sMON_PORT_WR : $e001          57345
+      sMonProcessCmd : $e346          58182
+             sPUTSTR : $e8ff          59647
+             sRbInit : $e311          58129
+             sRbRead : $e321          58145
+          sRbReadCmd : $e31b          58139
+           sROMcheck : $ea10          59920
+       sROMcheckdone : $ea46          59974
+             sStrlen : $ea59          59993
+           sTEXT2HEX : $eaf6          60150
+         sTEXT2HEX_1 : $eafe          60158
+        sTEXT2HEX_11 : $eb06          60166
+         sTEXT2HEX_2 : $eb08          60168
+           sWLSL4bit : $ea63          60003
+                UART : $d000          53248
+           UART_Init : $e0c8          57544
+            UartRead : $e0e7          57575
+          USB_COM_RD : $c000          49152
+          USB_COM_WR : $c800          51200
+             VERSION : $e00c          57356
+              WrAddr : $0000              0
+              WrData : $0002              2
+            WriteEEP : $e919          59673
+            WrRepeat : $0003              3
+             waitCTS : $e106          57606
+            waitdata : $e0f2          57586
+        waitSendDone : $e0fe          57598
+         _DELAY_10MS : $e9c5          59845
+               _firq : $eb13          60179
+              _firq0 : $eb17          60183
+              _firq1 : $eb27          60199
+              _firq2 : $eb37          60215
+             _firq22 : $eb47          60231
+              _firq3 : $eb49          60233
+            _GLOBALS : $0000              0
+     _getCheckSum160 : $ea4d          59981
+              _loop1 : $e0b5          57525
+              _loop2 : $e0c4          57540
+          _no_change : $e93b          59707
+            _putstr0 : $ea70          60016
+            _putstr1 : $ea79          60025
+        _sCMDbasdone : $e89f          59551
+           _sCMDbas0 : $e883          59523
+           _sCMDbas1 : $e890          59536
+         _sCMDbpdone : $e7c0          59328
+      _sCMDbpInvalid : $e785          59269
+            _sCMDbp1 : $e78a          59274
+            _sCMDbp2 : $e7a1          59297
+         _sCMDewdone : $e58a          58762
+     _sCMDewInvalid0 : $e526          58662
+     _sCMDewInvalid1 : $e524          58660
+     _sCMDewInvalid2 : $e522          58658
+     _sCMDewInvalid3 : $e520          58656
+            _sCMDew1 : $e52c          58668
+        _sCMDexe_rd0 : $e3c0          58304
+        _sCMDexe_rd1 : $e3c6          58310
+        _sCMDexe_rd2 : $e3d4          58324
+        _sCMDexe_wr1 : $e457          58455
+        _sCMDexe_wr2 : $e465          58469
+        _sCMDextrEnd : $e8de          59614
+AS09 Assembler for M6809 [1.42].                                     Page    4
+--------------------------------- merge.a09 ----------------------------------
+
+          _sCMDextr0 : $e8be          59582
+         _sCMDgodone : $e6f6          59126
+      _sCMDgoInvalid : $e6d4          59092
+            _sCMDgo0 : $e6d9          59097
+            _sCMDgo1 : $e6ed          59117
+           _sCMDhelp : $e38c          58252
+         _sCMDldbas0 : $e84d          59469
+         _sCMDldbas1 : $e850          59472
+         _sCMDldbas2 : $e861          59489
+         _sCMDlddone : $e6a3          59043
+      _sCMDldInvalid : $e61b          58907
+            _sCMDld0 : $e621          58913
+           _sCMDld00 : $e608          58888
+           _sCMDld01 : $e62b          58923
+            _sCMDld1 : $e678          59000
+            _sCMDld2 : $e6a0          59040
+        _sCMDqbpdone : $e81b          59419
+           _sCMDqbp0 : $e80d          59405
+           _sCMDqbp1 : $e815          59413
+         _sCMDrddone : $e3fc          58364
+      _sCMDrdinvalid : $e3b5          58293
+        _sCMDstpdone : $e736          59190
+     _sCMDstpInvalid : $e714          59156
+           _sCMDstp0 : $e719          59161
+         _sCMDwrdone : $e491          58513
+      _sCMDwrInvalid : $e444          58436
+            _sCMDwr1 : $e451          58449
+           _sExtrEnd : $e8fc          59644
+        _sExtrNByte0 : $e8e4          59620
+     _sMonProcessCmd : $e37d          58237
+           _sRbRead1 : $e338          58168
+          _sRbRead11 : $e33f          58175
+           _sRbRead2 : $e343          58179
+           _sRbRead3 : $e345          58181
+             _sROMok : $ea3f          59967
+        _sstrlenDone : $ea62          60002
+           _sstrlen1 : $ea5a          59994
+          _UartRead1 : $e0f1          57585
+          _WriteEEP1 : $e927          59687
+          _WriteEEP2 : $e930          59696
+          _WriteEEP5 : $e952          59730
+          _waitdata1 : $e0f3          57587
+          _waitdata2 : $e0fd          57597
+            __6809__ : $0001              1
+
+226 labels used
+
+1354 lines read, no errors in pass 1.
+AS09 Assembler for M6809 [1.42].                                     Page    5
+--------------------------------- merge.a09 ----------------------------------
+
                         
-                        ; SBC system, clock 8.0 Mhz
+                        ; SBC system hardware version 1.0, clock 8.0 MHz
                         ; for AS09 Assembler for M6809 [1.42]
                         
                         ;{ ---------------------------------------------------
                         ;-----------------------CSRAM-------------------------
 0000 =                  RAM_ORG				equ		$0000
-7fff =                  RAM_END				equ		$7FFF 				;32KB size
+7fff =                  RAM_END				equ		$7FFF 	; max 32KB size
                         
-                        ;-----------------------CS0---------------------------
-8000 =                  CS0					equ		$8000
-                        
-                        ;-----------------------CS1---------------------------
-a000 =                  USB_COM_PORT		equ		$a000
+                        ;-----------------------CS0_1-------------------------
+8000 =                  ROM1_ORG			equ		$8000 	; second SBC ROM, 16K section b
                         
                         ;-----------------------CS2---------------------------
-c000 =                  CS2_0				equ		$c000
-c800 =                  CS2_1				equ		$c800
+c000 =                  USB_COM_RD			equ		$c000
+c800 =                  USB_COM_WR			equ		$c800
 d000 =                  UART				equ		$d000
 d800 =                  PORTA				equ		$d800
 d801 =                  CRA					equ		$d801
@@ -27,13 +269,1364 @@ d802 =                  PORTB				equ		$d802
 d803 =                  CRB					equ		$d803
                         
                         ;-----------------------CS3---------------------------
-e000 =                  ROM_ORG  			equ		$e000 ; second 8K SBC ROM section beg
-f000 =                  MON_ORG  			equ		$f000 ; first 8K SBC ROM section begi
-fff0 =                  ROM_Integrity		equ		$fff0 ; SBC_ROM checksum data chec
+e000 =                  ROM0_ORG  			equ		$e000  	; first SBC ROM, 8K section 
+fff0 =                  ROM_Integrity		equ		$fff0 	; SBC ROM0 checksum data ch
 fff2 =                  INT_VECTOR			equ		$fff2
                         ;}
                         
-7fbd =                  BSS_SEG_ORG	equ             RAM_END+1 -3-35-1-10-4-14 
+                        
+                        ; coding convention:
+                        ; normal function paramters are passed by the stack: a
+                        ; the returned value is in D
+                        ; the registers X,Y,U need to be saved is modified wit
+                        ;
+                        ; special function lead by an 's' (e.g. sFUNCTION) is 
+                        ;
+                        ;{ ----------------------------------- Program Start -
+                        					code
+e000 =                  					org		ROM0_ORG					
+                        					
+                        ; declarations for compatibility					
+0010 =                  MONITOR_PROCESS_ID	equ		$10
+0020 =                  BASIC_PROCESS_ID	equ		$20
+000d =                  CR        			equ  	$0d             	; carriage return
+0000 =                  _GLOBALS			equ		0
+e000 :                  sAPL_KeyboardData
+e000 :                  BASICprocess
+e000 : 39               isKeyboardData		rts	
+                        					
+                        ; configuration DEBUG_MON_PORT linked to UART
+00bf =                  ENABLE_MON_INT		equ		%10111111			; enable firq for mon
+d000 =                  DEBUG_MON_PORT		equ		UART				; link the debugMonPort t
+e001 : 3404             sMON_PORT_WR		pshs	b
+e003 : bde0fe           					lbsr	waitSendDone					
+e006 : 3504             					puls	b
+e008 : f7d000           					stb		UART				
+e00b : 39               					rts
+                        					
+e00c : 0d76657273696f.. VERSION         	db      CR,"version 2.0.0.2",CR		; ve
+e01d : 323031342d3230..                  	db      "2014-2023, bare Retro 6809 
+e03c : 68747470733a2f.. 					db		"https://github.com/akund/bare-retro-6809-SBC
+d359 =                  CheckSum16_ROM0		equ		$d359
+                        
+AS09 Assembler for M6809 [1.42].                                     Page    6
+--------------------------------- merge.a09 ----------------------------------
+
+e069 : 1a50             RESET           	orcc	#%01010000			; disable all inter
+e06b : 10ce7fbd         					lds		#LV_StackBeginAddr
+                        					
+                        					; init (clear 16-bit) the re-mapping int vector t
+e06f : 8e7ff2           					ldx		#IntVectSWI3
+e072 : 4f               					clra
+e073 : 5f               					clrb
+e074 : ed81             					std		,x++	;sw3
+e076 : ed81             					std		,x++	;sw2
+e078 : ed81             					std		,x++	;firq
+e07a : ed81             					std		,x++	;irq
+e07c : ed81             					std		,x++	;sw1
+e07e : ed81             					std		,x++	;nmi
+e080 : ed81             					std		,x++	;start
+                        					
+e082 : bde0c8           					lbsr	UART_Init			; initialize the UART
+                        
+e085 : 8ee00c           					ldx		#VERSION			; version at boot up
+e088 : bde8ff           					lbsr	sPUTSTR
+                        					
+e08b : 8ee000           					ldx		#ROM0_ORG										
+e08e : 3410             					pshs	x					; push as 1st arg
+e090 : 30892000         					leax	$2000,x				; calculate end addr+2 (8k size)
+e094 : 3410             					pshs	x					; push as 2nd arg
+e096 : 4f               					clra
+e097 : 5f               					clrb
+e098 : b3fff0           					subd	ROM_Integrity		; ROM0 initial CheckSum16 is 
+e09b : 3406             					pshs	d					; push as 3rd arg (initial value)
+e09d : bdea47           					lbsr	getCheckSum16		; ret value in d
+e0a0 : 3266             					leas	6,s					; free the 3 pushes					
+e0a2 : 8efff0           					ldx		#ROM_Integrity
+e0a5 : bdea10           					lbsr	sROMcheck			; check the ROM integrity							
+                        					
+                        					;--------- init peripherals and others ----------
+                        					; port A and B initialized with SD Card (requires
+e0a8 : bde907           					lbsr	SELECTBANK0
+                        					
+                        					;---------- initialize monitor resources --------
+e0ab : bde2dc           					lbsr	sMONITORSTART
+                        					
+                        ;-------------------------------- main program -------
+e0ae : 327e             					leas	-2,s				; heart beat countdown @ 0,u
+e0b0 : 33e4             					leau	0,s					
+                        
+e0b2 : bde346           loop				lbsr	sMonProcessCmd		; monitor process call
+                        					
+                        					; place your code here
+                        					
+                        					;--------- heart beat ~1 sec period -------------
+e0b5 : ecc4             _loop1				ldd		0,u					; get heart beat countdown
+e0b7 : 830001           					subd    #1
+e0ba : 2608             					bne     _loop2
+e0bc : c62e             					ldb		#'.'
+e0be : f7d000           					stb		DEBUG_MON_PORT 		; write the dot as life che
+e0c1 : cc7fff           					ldd		#$7fff
+e0c4 : edc4             _loop2				std		0,u					; save heart beat countdown				
+e0c6 : 20ea             					bra		loop
+                        
+                        
+                        ;--------------------------------------------------- 1
+                        				code
+                        				
+AS09 Assembler for M6809 [1.42].                                     Page    7
+--------------------------------- merge.a09 ----------------------------------
+
+                        ;----------------------------------------------------;
+                        ; UART Init
+                        ; param: 	none
+                        ; return:	none
+                        ;----------------------------------------------------;
+e0c8 :                  UART_Init	;{
+e0c8 : 8680             				lda		#$80			; DLAB=1
+e0ca : b7d003           				sta		UART+3
+                        				
+                        										; 12MHz ->  78:baudrate 9600,               
+                        										; 16MHz -> 104:baudrate 9600, 26:baudrate 38
+                        										; 24MHz -> 156:baudrate 9600, 39:baudrate 38
+e0cd : 8668             				lda		#104
+e0cf : b7d000           				sta		UART
+e0d2 : 8600             				lda		#$00	  	
+e0d4 : b7d001           				sta		UART+1
+                        				
+e0d7 : 8601             				lda		#$01	  		; Fifo enable
+e0d9 : b7d002           				sta		UART+2
+                        				
+e0dc : 8603             				lda		#$03			; DLAB=0, config 8N1 
+e0de : b7d003           				sta		UART+3
+                        				
+e0e1 : 8601             				lda		#$01			; enable rx interrrupt
+e0e3 : b7d001           				sta		UART+1
+e0e6 : 39               				rts
+                        ;}
+                        
+                        ;----------------------------------------------------;
+                        ; UART Read
+                        ; param: 	none
+                        ; return:	read byte -> B when when A != 0
+                        ;----------------------------------------------------;
+e0e7 :                  UartRead ;{
+e0e7 : b6d005           				lda		UART+5 			; check if a byte is available
+e0ea : 8401             				anda	#1				; a contains not NULL when a byte avail
+e0ec : 2703             				beq		_UartRead1
+e0ee : f6d000           				ldb 	UART   			; read first byte
+e0f1 : 39               _UartRead1		rts
+                        ;}
+                        
+                        ;----------------------------------------------------;
+                        ; wait until a char available or 256 polling cycles ti
+                        ; param: 	none
+                        ; return:	none
+                        ;----------------------------------------------------;
+e0f2 :                  waitdata ;{		
+e0f2 : 5f               				clrb
+e0f3 : 5a               _waitdata1		decb
+e0f4 : 2707             				beq		_waitdata2 		; exit
+e0f6 : b6d005           				lda		UART+5 			; check if a byte is available
+e0f9 : 8401             				anda	#1
+e0fb : 27f6             				beq		_waitdata1		
+e0fd : 39               _waitdata2		rts
+                        ;}
+                        
+                        ;----------------------------------------------------;
+                        ; wait until the remaining char is sent (fifo empty)
+                        ; param: 	none
+                        ; return:	none
+                        ;----------------------------------------------------;
+e0fe :                  waitSendDone ;{
+AS09 Assembler for M6809 [1.42].                                     Page    8
+--------------------------------- merge.a09 ----------------------------------
+
+e0fe : b6d005           				lda		UART+5 			; check if uart TX ready (waiting f
+e101 : 8420             				anda	#$20
+e103 : 27f9             				beq		waitSendDone		
+e105 : 39               				rts
+                        ;}
+                        
+                        ;----------------------------------------------------;
+                        ; wait CTS
+                        ; param: 	none
+                        ; return:	none
+                        ;----------------------------------------------------;
+e106 :                  waitCTS ;{
+e106 : b6d006           				lda		UART+6 			; read the moden status register
+e109 : 8410             				anda	#$10
+e10b : 27f9             				beq		waitCTS
+e10d : 39               				rts
+                        ;}
+                        ;{ ---------------------------------------------------
+                        					code
+                        					
+e10e : 302e382e302e3000 MON_VERSION     	db		"0.8.0.0",0			; version [major, m
+                        					
+                        ;---------------------------------------------------
+                        ; write commands menu with version in terminal
+                        ;---------------------------------------------------
+e116 : 0d737461727469.. STR_MONITOR      	db      CR,"starting monitor process
+e134 : 0d4d6f6e69746f.. STR_VERSION			db		CR,"Monitor for 6809 Computer v",0
+e151 : 0d636f6d6d616e.. STR_COMMAND			db		CR,"command menu",CR
+e15f : 72205b66697273.. 					db		"r [first addr] (optional [n repeat]) reads t
+e198 : 77205b61646472.. 					db		"w [addr] [data], optional [n repeat] writes 
+e1d5 : 65205b7372635d.. 					db		"e [src] [dst] [length] (optional [protection
+e21b : 6c206f72206c20.. 					db		"l or l [offset] loads a SRec data",CR
+e23d : 67205b61646472.. 					db		"g [addr] executes at the address",CR
+e25e : 73205b70726f63.. 					db		"s [process ID] stops the process",CR
+e27f : 62205b61646472.. 					db		"b [addr] sets debugging mode a breakpoint at
+e2b8 : 71207175697473.. 					db		"q quits debugging mode",CR
+e2cf : 68207468697320.. 					db		"h this menu",CR,0
+                        
+e2dc : cc0000           sMONITORSTART		ldd		#BrkPtOff			; init break point var
+e2df : fd7fbd           					std		BrkPtAddr										
+e2e2 : bde311           					lbsr	sRbInit				; monitor init ring buffer
+e2e5 : 1cbf             					andcc	#ENABLE_MON_INT		; enable monitor interrupt
+                        					
+e2e7 : 8ee116           					ldx		#STR_MONITOR		; monitor start-up message
+e2ea : bde8ff           					lbsr	sPUTSTR				;	
+e2ed : c610             					ldb		#MONITOR_PROCESS_ID
+e2ef : 3406             					pshs	d
+e2f1 : bdeab0           					lbsr	HEXBYTE2MONPORT
+e2f4 : c60d             					ldb		#CR
+e2f6 : 3406             					pshs	d
+e2f8 : bdead0           					lbsr	BYTE2MONPORT
+e2fb : 3264             					leas	4,s					; clear 2 pushes
+e2fd : 39               					rts
+                        												; print help menu at startup
+e2fe : 8ee134           sMONITORMENU		ldx		#STR_VERSION
+e301 : bde8ff           					lbsr	sPUTSTR
+e304 : 8ee10e           					ldx		#MON_VERSION
+e307 : bde8ff           					lbsr	sPUTSTR
+e30a : 8ee151           					ldx		#STR_COMMAND
+e30d : bde8ff           					lbsr	sPUTSTR
+e310 : 39               					rts
+                        
+AS09 Assembler for M6809 [1.42].                                     Page    9
+--------------------------------- merge.a09 ----------------------------------
+
+                        	;{ --------------------------------------------------
+e311 :                  sRbInit	
+                        		;---------------------------------------------------
+                        		; asm call init ring buffer
+                        		;---------------------------------------------------
+                        		;{
+e311 : 7f7fc0           					clr		RbHead
+e314 : 7f7fc1           					clr		RbTail
+e317 : 7f7fe2           					clr		RbDectCR
+e31a : 39               					rts
+                        		;}
+                        
+e31b :                  sRbReadCmd 
+                        		;---------------------------------------------------
+                        		; asm call read a byte from ringbuffer (a 'CR' must 
+                        		; param:	none
+                        		; return:	cmd value -> A. when invalid, NULL -> B
+                        		;---------------------------------------------------
+                        		;{
+e31b : 5f               					clrb						; no char by default
+e31c : b67fe2           					lda		RbDectCR
+e31f : 2724             					beq		_sRbRead3			; still no CR in the cmd buffer
+                        		
+e321 : f67fc1           sRbRead				ldb		RbTail
+e324 : f17fc0           					cmpb	RbHead
+e327 : 2716             					beq		_sRbRead11			; fifo empty when tail = head
+e329 : 3410             					pshs	x
+e32b : 8e7fc2           					ldx		#Rbuffer
+e32e : a685             					lda		b,x
+e330 : 3510             					puls	x
+e332 : 5c               					incb						; inc tail index
+e333 : c120             					cmpb	#RbSize
+e335 : 2501             					blo		_sRbRead1
+e337 : 5f               					clrb						; wrap RbTail
+e338 : f77fc1           _sRbRead1			stb		RbTail				; save updated tail index o
+e33b : c601             					ldb		#1					; not null when valid
+e33d : 2004             					bra		_sRbRead2
+e33f : 7f7fe2           _sRbRead11			clr		RbDectCR			; no more CR possible
+e342 : 5f               					clrb						; no char
+e343 : 1cbf             _sRbRead2			andcc	#ENABLE_MON_INT		; re-enable int in 
+e345 : 39               _sRbRead3			rts
+                        
+                        	;}
+                        
+e346 :                  sMonProcessCmd
+                        		;---------------------------------------------------
+                        		; asm call extract and execute the cmd
+                        		;---------------------------------------------------
+                        		;{
+e346 : 8dd3             					bsr		sRbReadCmd
+e348 : 5d               					tstb						; RB empty ?
+e349 : 2732             					beq		_sMonProcessCmd					
+e34b : 8168             					cmpa	#'h'
+e34d : 272f             					beq		sCMDhelp 			; help command
+e34f : 8172             					cmpa	#'r'
+e351 : 273a             					beq		sCMDrd  			; read command
+e353 : 8177             					cmpa	#'w'
+e355 : 102700aa         					lbeq	sCMDwr  			; write command
+e359 : 8165             					cmpa	#'e'
+e35b : 1027018f         					lbeq	sCMDew 				; eeprom write command
+e35f : 816c             					cmpa	#'l'
+e361 : 10270281         					lbeq	sCMDld  			; load SRec command
+AS09 Assembler for M6809 [1.42].                                     Page   10
+--------------------------------- merge.a09 ----------------------------------
+
+e365 : 8167             					cmpa	#'g'
+e367 : 1027035b         					lbeq	sCMDgo  			; Go command
+e36b : 8173             					cmpa	#'s'
+e36d : 10270395         					lbeq	sCMDStp  			; Stop process command
+e371 : 8162             					cmpa	#'b'
+e373 : 102703f2         					lbeq	sCMDbp  			; breakpoint command
+e377 : 8171             					cmpa	#'q'
+e379 : 10270470         					lbeq	sCMDqbp  			; stop debugging command
+e37d : 39               _sMonProcessCmd		rts  						; cmd no existing
+                        
+                        			;--------------------------------------------------
+e37e : 8d9b             sCMDhelp 			bsr		sRbReadCmd
+e380 : 5d               					tstb
+e381 : 2709             					beq		_sCMDhelp				
+e383 : 810d             					cmpa	#CR
+e385 : 1026052b         					lbne	sCMDinvalid  		; not CR, invalid CMD
+e389 : bde2fe           					lbsr	sMONITORMENU
+e38c : 39               _sCMDhelp			rts							; exit
+                        			
+                        			;--------------------------------------------------
+e38d :                  sCMDrd
+0000 =                  RdAddr				equ		0					; uint RdAddr index
+0002 =                  RdRepeat			equ		2					; uint Count index
+e38d : 3440             					pshs	u
+e38f : 327e             					leas	-2,s				; allocate 16-bit
+e391 : 327e             					leas	-2,s				; allocate 16-bit
+e393 : 33e4             					leau	,s					; use the U as pointer
+e395 : 4f               					clra
+e396 : 5f               					clrb
+e397 : ed42             					std		RdRepeat,u 			; set to 0 by default
+                        				
+                        					;------- extract the ' ' only -------------------
+e399 : bde8bb           					lbsr	sCMDextr
+e39c : c120             					cmpb	#' '
+e39e : 2615             					bne		_sCMDrdinvalid	
+                        				
+                        					;------- extract 'raddr' --------------------
+e3a0 : bde8bb           					lbsr	sCMDextr
+e3a3 : 5d               					tstb
+e3a4 : 270f             					beq		_sCMDrdinvalid
+e3a6 : afc4             					stx		RdAddr,u 			; save read param 1
+e3a8 : c10d             					cmpb	#CR					; check if a repeat param follows
+e3aa : 2714             					beq		_sCMDexe_rd0
+                        				
+                        					;------- extract the optional 'repeat' ----------
+e3ac : bde8bb           					lbsr	sCMDextr
+e3af : af42             					stx		RdRepeat,u 			; save read param 2
+e3b1 : c10d             					cmpb	#CR
+e3b3 : 270b             					beq		_sCMDexe_rd0
+e3b5 : bde8b4           _sCMDrdinvalid		lbsr	sCMDinvalid
+e3b8 : 2042             					bra		_sCMDrddone
+                        				
+e3ba : 0d7265616400     STR_CMD_rd			db		CR,"read",0
+e3c0 : 8ee3ba           _sCMDexe_rd0		ldx		#STR_CMD_rd
+e3c3 : bde8ff           					lbsr	sPUTSTR
+                        				
+e3c6 : c60d             _sCMDexe_rd1   		ldb		#CR
+e3c8 : bde001           					lbsr	sMON_PORT_WR		; CR when begin with addr
+e3cb : ecc4             					ldd		RdAddr,u
+e3cd : 3406             					pshs	d
+e3cf : bdea7b           					lbsr	HEXWORD2MONPORT
+e3d2 : 3262             					leas	2,s
+AS09 Assembler for M6809 [1.42].                                     Page   11
+--------------------------------- merge.a09 ----------------------------------
+
+e3d4 : c620             _sCMDexe_rd2		ldb		#' '
+e3d6 : bde001           					lbsr	sMON_PORT_WR
+e3d9 : e6d4             					ldb		[RdAddr,u]
+e3db : 3406             					pshs	d
+e3dd : bdeab0           					lbsr	HEXBYTE2MONPORT
+e3e0 : 3262             					leas	2,s
+e3e2 : ec42             					ldd		RdRepeat,u
+e3e4 : 10830000         					cmpd	#0
+e3e8 : 2712             					beq		_sCMDrddone
+e3ea : 830001           					subd	#1
+e3ed : ed42             					std		RdRepeat,u
+e3ef : ecc4             					ldd		RdAddr,u
+e3f1 : c30001           					addd	#1
+e3f4 : edc4             					std		RdAddr,u
+e3f6 : c41f             					andb	#$1f
+e3f8 : 27cc             					beq		_sCMDexe_rd1		; write addr at begin
+e3fa : 20d8             					bra		_sCMDexe_rd2
+e3fc : 3262             _sCMDrddone			leas	2,s					; free 16-bit param 2
+e3fe : 3262             					leas	2,s					; free 16-bit param 1
+e400 : 3540             					puls	u
+e402 : 39               					rts  						; exit
+                        
+                        ;----------------------------------------------------;
+e403 :                  sCMDwr
+0000 =                  WrAddr				equ		0					; uint WrAddr index
+0002 =                  WrData				equ		2					; uchar WrData index
+0003 =                  WrRepeat			equ		3					; uint repeat
+e403 : 3440             					pshs	u
+e405 : 327e             					leas	-2,s				; allocate 16-bit
+e407 : 327f             					leas	-1,s				; allocate 8-bit
+e409 : 327e             					leas	-2,s				; allocate 16-bit
+e40b : 33e4             					leau	,s					; use the U as pointer
+e40d : 4f               					clra
+e40e : 5f               					clrb
+e40f : ed43             					std		WrRepeat,u 			; set to 0 by default
+                        					
+                        					;------- extract the ' ' only -------------------
+e411 : bde8bb           					lbsr	sCMDextr
+e414 : c120             					cmpb	#' '
+e416 : 262c             					bne		_sCMDwrInvalid
+                        
+                        					;------- extract 'waddr' --------------------
+e418 : bde8bb           					lbsr	sCMDextr
+e41b : c10d             					cmpb	#CR
+e41d : 2725             					beq		_sCMDwrInvalid		; CR shall come later
+e41f : c120             					cmpb	#' '
+e421 : 2621             					bne		_sCMDwrInvalid		
+e423 : 8ce000           					cmpx	#ROM0_ORG			; avoid write in ROM
+e426 : 241c             					bhs		_sCMDwrInvalid
+e428 : afc4             					stx		WrAddr,u 			; save read param 1
+                        					
+                        					;------- extract 'wdata' --------------------
+e42a : bde8bb           					lbsr	sCMDextr
+e42d : 1e10             					exg		x,d
+e42f : e742             					stb		WrData,u 			; save read param 2
+e431 : 1e10             					exg		x,d
+e433 : c10d             					cmpb	#CR					; check if param ended
+e435 : 271a             					beq		_sCMDwr1
+e437 : c120             					cmpb	#' '				; check if a repeat param follows
+e439 : 2609             					bne		_sCMDwrInvalid				
+                        					
+                        					;------- extract the optional 'repeat' ----------
+AS09 Assembler for M6809 [1.42].                                     Page   12
+--------------------------------- merge.a09 ----------------------------------
+
+e43b : bde8bb           					lbsr	sCMDextr
+e43e : af43             					stx		WrRepeat,u 			; save read param 3
+e440 : c10d             					cmpb	#CR
+e442 : 270d             					beq		_sCMDwr1				
+                        				
+e444 : bde8b4           _sCMDwrInvalid		lbsr	sCMDinvalid
+e447 : 204812           					lbra	_sCMDwrdone
+                        				
+e44a : 0d777269746500   STR_CMD_wr			db		CR,"write",0
+e451 : 8ee44a           _sCMDwr1			ldx		#STR_CMD_wr
+e454 : bde8ff           					lbsr	sPUTSTR
+e457 : c60d             _sCMDexe_wr1     	ldb		#CR					; CR when begin with ad
+e459 : bde001           					lbsr	sMON_PORT_WR
+e45c : ecc4             					ldd		WrAddr,u
+e45e : 3406             					pshs	d
+e460 : bdea7b           					lbsr	HEXWORD2MONPORT
+e463 : 3262             					leas	2,s
+e465 : c620             _sCMDexe_wr2		ldb		#' '
+e467 : bde001           					lbsr	sMON_PORT_WR
+e46a : e642             					ldb		WrData,u
+e46c : 3406             					pshs	d
+e46e : bdeab0           					lbsr	HEXBYTE2MONPORT
+e471 : 3262             					leas	2,s
+e473 : a642             					lda		WrData,u
+e475 : a7d4             					sta		[WrAddr,u]			; perform the write
+e477 : ec43             					ldd		WrRepeat,u
+e479 : 10830000         					cmpd	#0
+e47d : 2712             					beq		_sCMDwrdone
+e47f : 830001           					subd	#1
+e482 : ed43             					std		WrRepeat,u
+e484 : ecc4             					ldd		WrAddr,u
+e486 : c30001           					addd	#1
+e489 : edc4             					std		WrAddr,u
+e48b : c41f             					andb	#$1f
+e48d : 27c8             					beq		_sCMDexe_wr1		; write addr at begin
+e48f : 20d4             					bra		_sCMDexe_wr2
+                        	
+e491 : 3262             _sCMDwrdone			leas	2,s					; free 16-bit param 3
+e493 : 3261             					leas	1,s					; free 8-bit param 2
+e495 : 3262             					leas	2,s					; free 16-bit param 1
+e497 : 3540             					puls	u
+e499 : 39               					rts							; exit
+                        
+                        ;----------------------------------------------------;
+e49a : 0d77726974696e.. STR_EW1				db		CR,"writing ",0
+e4a4 : 20627974652873.. STR_EW2				db		" byte(s) from ",0
+e4b3 : 20746f2000       STR_EW3				db		" to ",0
+e4b8 : 2c20706c656173.. STR_EW4				db		", please wait ...",0
+e4ca : 0d656570726f6d.. STR_EWdone			db		CR,"eeprom writing done, ",0
+e4e1 : 436865636b5375.. STR_EW_CS			db		"CheckSum16: ",0
+e4ee : 3440             sCMDew				pshs	u					; save register(s)
+                        					;------- extract ' ' --------------------
+e4f0 : bde8bb           					lbsr	sCMDextr
+e4f3 : c120             					cmpb	#' '
+e4f5 : 262f             					bne		_sCMDewInvalid0					
+                        					
+                        					;------- extract 'src' until ' ' ----------------
+e4f7 : bde8bb           					lbsr	sCMDextr
+e4fa : 3410             					pshs	x					; push WriteEEP param 1 (src)
+e4fc : c120             					cmpb	#' '
+e4fe : 2624             					bne		_sCMDewInvalid1					
+                        					
+AS09 Assembler for M6809 [1.42].                                     Page   13
+--------------------------------- merge.a09 ----------------------------------
+
+                        					;------- extract 'dst'until' ' ------------------
+e500 : bde8bb           					lbsr	sCMDextr
+e503 : 3410             					pshs	x 					; push WriteEEP param 2 (dst)
+e505 : c120             					cmpb	#' '
+e507 : 2619             					bne		_sCMDewInvalid2								
+                        					
+                        					;------- extract 'len'until' ' ------------------
+e509 : bde8bb           					lbsr	sCMDextr
+e50c : 3410             					pshs	x 					; push WriteEEP param 3 (len)
+e50e : 8e0000           					ldx		#0					; no protection param by default
+e511 : c10d             					cmpb	#CR
+e513 : 2717             					beq		_sCMDew1			; no protection param
+e515 : c120             					cmpb	#' '
+e517 : 2607             					bne		_sCMDewInvalid3					
+                        					
+                        					;------- extract 'protection'until'CR' ----------
+e519 : bde8bb           					lbsr	sCMDextr					
+e51c : c10d             					cmpb	#CR
+e51e : 270c             					beq		_sCMDew1				; branch when OK, otherwise free
+e520 : 3262             _sCMDewInvalid3		leas	2,s					; free WriteEEP param 3
+e522 : 3262             _sCMDewInvalid2		leas	2,s					; free WriteEEP param 2
+e524 : 3262             _sCMDewInvalid1		leas	2,s					; free WriteEEP param 1
+e526 : bde8b4           _sCMDewInvalid0		lbsr	sCMDinvalid
+e529 : 205f12           					lbra	_sCMDewdone
+                        
+e52c : 3410             _sCMDew1			pshs	x 					; WriteEEP param 4 (protection)
+e52e : 33e4             					leau	0,s					; use U as parameter pointer
+e530 : 8ee49a           					ldx		#STR_EW1
+e533 : bde8ff           					lbsr	sPUTSTR
+e536 : ec42             					ldd		2,u					; print param 3 (length in byte)
+e538 : 3406             					pshs	d
+e53a : bdea7b           					lbsr	HEXWORD2MONPORT
+e53d : 3262             					leas	2,s
+e53f : 8ee4a4           					ldx		#STR_EW2
+e542 : bde8ff           					lbsr	sPUTSTR
+e545 : ec46             					ldd		6,u					; print param 2 (source)
+e547 : 3406             					pshs	d
+e549 : bdea7b           					lbsr	HEXWORD2MONPORT
+e54c : 3262             					leas	2,s
+e54e : 8ee4b3           					ldx		#STR_EW3
+e551 : bde8ff           					lbsr	sPUTSTR
+e554 : ec44             					ldd		4,u					; print param 1 (destination)
+e556 : 3406             					pshs	d
+e558 : bdea7b           					lbsr	HEXWORD2MONPORT
+e55b : 3262             					leas	2,s
+e55d : 8ee4b8           					ldx		#STR_EW4
+e560 : bde8ff           					lbsr	sPUTSTR
+                        					
+e563 : bde919           					lbsr	WriteEEP
+e566 : 8ee4ca           					ldx		#STR_EWdone
+e569 : bde8ff           					lbsr	sPUTSTR
+                        					
+e56c : 8ee4e1           					ldx		#STR_EW_CS
+e56f : bde8ff           					lbsr	sPUTSTR
+e572 : ec44             					ldd		4,u					; Checksum calculated in ROM. Take W
+e574 : 3406             					pshs	d					; push as 1st arg (CheckSum16 begin ad
+e576 : e342             					addd	2,u					; add WriteEEP length in byte
+e578 : 3406             					pshs	d					; push as 2nd arg (CheckSum16 end addr
+e57a : 4f               					clra						; initial CheckSum16 value shall be 0
+e57b : 5f               					clrb
+e57c : 3406             					pshs	d					; push as 3rd arg
+e57e : bdea47           					lbsr	getCheckSum16
+AS09 Assembler for M6809 [1.42].                                     Page   14
+--------------------------------- merge.a09 ----------------------------------
+
+e581 : 3266             					leas	6,s					; free the 3 args					
+e583 : 3406             					pshs	d
+e585 : bdea7b           					lbsr	HEXWORD2MONPORT
+e588 : 3262             					leas	2,s
+e58a : 3268             _sCMDewdone			leas	8,s					; free the WriteEEP 4 param
+e58c : 35c0             					puls	u,pc  				; restore u and return				
+                        						
+                        ;----------------------------------------------------;
+e58e : 0d73656e64206e.. STR_CMD_LD			db		CR,"send now the SRec data, Offset=",
+e5af : 20627974652873.. STR_CMD_LD2			db		" byte(s) @ addr:",0
+e5c0 : 72656365707469.. STR_CMD_LD3			db		"reception completed",CR,0
+e5d5 : 20636865636b73.. STR_CMD_LD4			db		" checksum error!",0
+0000 =                  ByteCount			equ		0					; uchar byte count index
+0001 =                  SRecCheckSum		equ		1					; uchar SRecCheckSum index
+0002 =                  Offset				equ		2					; uint Offset index
+0004 =                  NewAddr				equ		4					; uint new address
+e5e6 : 3440             sCMDld				pshs	u
+e5e8 : 327e             					leas	-2,s				; allocate 16-bit Offset
+e5ea : 327e             					leas	-2,s				; allocate 16-bit Offset
+e5ec : 327f             					leas	-1,s				; allocate 8-bit SRecCheckSum
+e5ee : 327f             					leas	-1,s				; allocate 8-bit ByteCount
+e5f0 : 33e4             					leau	,s					; use the U as pointer
+e5f2 : 4f               					clra
+e5f3 : 5f               					clrb
+e5f4 : ed42             					std		Offset,u 			; set to 0 by default
+                        					
+                        					;------- extract 'CR' or optional ' ''offset' ---
+e5f6 : bde8bb           					lbsr	sCMDextr
+e5f9 : c10d             					cmpb	#CR					; no offset
+e5fb : 270b             					beq		_sCMDld00
+e5fd : c120             					cmpb	#' '
+e5ff : 261a             					bne		_sCMDldInvalid		; with offset data
+                        					
+                        					;------- extract optional 'offset' --------------
+e601 : bde8bb           					lbsr	sCMDextr
+e604 : c10d             					cmpb	#CR
+e606 : 2613             					bne		_sCMDldInvalid					
+                        					
+e608 : af42             _sCMDld00			stx		Offset,u			; save the offset data
+e60a : 8ee58e           					ldx		#STR_CMD_LD
+e60d : bde8ff           					lbsr	sPUTSTR
+e610 : ec42             					ldd		Offset,u
+e612 : 3406             					pshs	d
+e614 : bdea7b           					lbsr	HEXWORD2MONPORT
+e617 : 3262             					leas	2,s
+e619 : 2006             					bra		_sCMDld0
+e61b : bde8b4           _sCMDldInvalid		lbsr	sCMDinvalid
+e61e : 7ee6a3           					lbra	_sCMDlddone
+                        					;------- seek for 'S1' --------------------
+e621 : bde321           _sCMDld0			lbsr	sRbRead 			; read a byte
+e624 : 5d               					tstb
+e625 : 27fa             					beq		_sCMDld0
+e627 : 8153             					cmpa	#'S'
+e629 : 26f6             					bne		_sCMDld0
+e62b : bde321           _sCMDld01			lbsr	sRbRead 			; read a byte
+e62e : 5d               					tstb
+e62f : 27fa             					beq		_sCMDld01
+e631 : 8131             					cmpa	#'1'
+e633 : 266e             					bne		_sCMDlddone 		; the last line does not conta
+e635 : 6f41             					clr		SRecCheckSum,u		; SRecCheckSum = 0
+                        					
+e637 : 8602             					lda		#2					; read byte count
+AS09 Assembler for M6809 [1.42].                                     Page   15
+--------------------------------- merge.a09 ----------------------------------
+
+e639 : bde8df           					lbsr	sExtrNByte
+e63c : 3404             					pshs	b
+e63e : eb41             					addb	SRecCheckSum,u		; SRecCheckSum +=  bytecount
+e640 : e741             					stb		SRecCheckSum,u
+e642 : 3504             					puls	b
+e644 : c003             					subb	#3					; 3 byte already read
+e646 : e7c4             					stb		ByteCount,u
+e648 : c60d             					ldb		#CR
+e64a : bde001           					lbsr	sMON_PORT_WR
+e64d : e6c4             					ldb		ByteCount,u
+e64f : 3406             					pshs	d
+e651 : bdeab0           					lbsr	HEXBYTE2MONPORT
+e654 : 3262             					leas	2,s
+e656 : 8ee5af           					ldx		#STR_CMD_LD2
+e659 : bde8ff           					lbsr	sPUTSTR
+                        					
+e65c : 8604             					lda		#4  				; read addr
+e65e : bde8df           					lbsr	sExtrNByte
+e661 : ed44             					std	    NewAddr,u			; save addr
+e663 : ab41             					adda	SRecCheckSum,u		; SRecCheckSum +=  addr hi
+e665 : a741             					sta		SRecCheckSum,u
+e667 : eb41             					addb	SRecCheckSum,u		; SRecCheckSum +=  addr lo
+e669 : e741             					stb		SRecCheckSum,u	
+e66b : ec44             					ldd	    NewAddr,u			; addr -= offset
+e66d : a342             					subd	Offset,u
+e66f : ed44             					std	    NewAddr,u			; save new addr
+e671 : 3406             					pshs	d
+e673 : bdea7b           					lbsr	HEXWORD2MONPORT
+e676 : 3262             					leas	2,s
+                        
+e678 : 8602             _sCMDld1			lda		#2					; read data
+e67a : bde8df           					lbsr	sExtrNByte
+e67d : 3404             					pshs	b
+e67f : eb41             					addb	SRecCheckSum,u		; SRecCheckSum +=  data
+e681 : e741             					stb		SRecCheckSum,u
+e683 : 3504             					puls	b
+e685 : ae44             					ldx	    NewAddr,u			; get new addr
+e687 : e780             					stb     ,x+ 				; write to dst addr and inc
+e689 : af44             					stx	    NewAddr,u			; save new addr
+e68b : 6ac4             					dec		ByteCount,u
+e68d : 26e9             					bne		_sCMDld1
+                        						
+e68f : 8602             					lda		#2					; read checksum
+e691 : bde8df           					lbsr	sExtrNByte
+e694 : e841             					eorb	SRecCheckSum,u 		; checksum xor with sum sho
+e696 : c1ff             					cmpb	#$ff
+e698 : 2706             					beq		_sCMDld2
+e69a : 8ee5d5           					ldx		#STR_CMD_LD4
+e69d : bde8ff           					lbsr	sPUTSTR
+e6a0 : 7ee621           _sCMDld2			lbra	_sCMDld0
+e6a3 : c60d             _sCMDlddone      	ldb		#CR
+e6a5 : bde001           					lbsr	sMON_PORT_WR
+e6a8 : 8ee5c0           					ldx		#STR_CMD_LD3
+e6ab : bde8ff           					lbsr	sPUTSTR
+e6ae : 3261             					leas	1,s					; free 8-bit
+e6b0 : 3261             					leas	1,s					; free 8-bit
+e6b2 : 3262             					leas	2,s					; free 16-bit
+e6b4 : 3262             					leas	2,s					; free 16-bit
+e6b6 : 3540             					puls	u
+e6b8 : 39               					rts							; exit
+                        
+                        ;----------------------------------------------------;
+AS09 Assembler for M6809 [1.42].                                     Page   16
+--------------------------------- merge.a09 ----------------------------------
+
+e6b9 : 0d676f20616464.. STR_GO				db		CR,"go address ",0
+e6c6 :                  sCMDgo				;------- extract ' ' --------------------
+e6c6 : bde8bb           					lbsr	sCMDextr
+e6c9 : c120             					cmpb	#' '
+e6cb : 2607             					bne		_sCMDgoInvalid
+                        					
+                        					;------- extract 'addr' with 'CR' ---------------
+e6cd : bde8bb           					lbsr	sCMDextr
+e6d0 : c10d             					cmpb	#CR								
+e6d2 : 2705             					beq		_sCMDgo0			; missing addr param	
+e6d4 : bde8b4           _sCMDgoInvalid		lbsr	sCMDinvalid
+e6d7 : 201d             					bra		_sCMDgodone
+e6d9 : 3410             _sCMDgo0         	pshs	x					; save go addr
+e6db : 8ee6b9           					ldx		#STR_GO
+e6de : bde8ff           					lbsr	sPUTSTR					
+e6e1 : ece4             					ldd		0,s					; get go addr
+e6e3 : 3406             					pshs	d
+e6e5 : bdea7b           					lbsr	HEXWORD2MONPORT
+e6e8 : 3262             					leas	2,s
+e6ea : ccffff           					ldd		#$ffff
+e6ed : 830001           _sCMDgo1			subd	#1
+e6f0 : 26fb             					bne		_sCMDgo1			; wait until MONPORT output proce
+e6f2 : 3510             					puls	x
+e6f4 : ad84             					jsr     ,x      			; execute @ addr
+e6f6 : 39               _sCMDgodone			rts							; exit
+                        
+                        ;----------------------------------------------------;
+e6f7 : 0d73746f702070.. STR_ST				db		CR,"stop process ",0
+e706 :                  sCMDStp				;------- extract ' ' --------------------
+e706 : bde8bb           					lbsr	sCMDextr
+e709 : c120             					cmpb	#' '
+e70b : 2607             					bne		_sCMDstpInvalid
+                        					
+                        					;------- extract 'process ID' with 'CR' ---------
+e70d : bde8bb           					lbsr	sCMDextr
+e710 : c10d             					cmpb	#CR								
+e712 : 2705             					beq		_sCMDstp0			; missing ID param	
+e714 : bde8b4           _sCMDstpInvalid		lbsr	sCMDinvalid
+e717 : 201d             					bra		_sCMDstpdone
+e719 : 3410             _sCMDstp0         	pshs	x					; save process ID
+e71b : 8ee6f7           					ldx		#STR_ST
+e71e : bde8ff           					lbsr	sPUTSTR					
+e721 : ece4             					ldd		0,s					; get process ID
+e723 : 3406             					pshs	d
+e725 : bdeab0           					lbsr	HEXBYTE2MONPORT
+e728 : 3262             					leas	2,s
+e72a : 3506             					puls	d
+e72c : c120             					cmpb	#BASIC_PROCESS_ID
+e72e : 2606             					bne		_sCMDstpdone
+e730 : 7f7ff0           					clr		BasicCallBack		; void the next callback addr
+e733 : 7f7ff1           					clr		BasicCallBack+1
+e736 : 39               _sCMDstpdone		rts							; exit
+                        
+                        ;----------------------------------------------------;
+e737 : 0d736574206272.. STR_BP				db		CR,"set breakkpoint address ",0
+e751 : 0d627265616b6b.. STR_BP1				db		CR,"breakkpoint existing! ",0
+e769 :                  sCMDbp				;------- extract ' ' --------------------
+e769 : bde8bb           					lbsr	sCMDextr
+e76c : c120             					cmpb	#' '
+e76e : 2615             					bne		_sCMDbpInvalid
+                        					
+                        					;------- extract addr param with 'CR ' ----------
+AS09 Assembler for M6809 [1.42].                                     Page   17
+--------------------------------- merge.a09 ----------------------------------
+
+e770 : bde8bb           					lbsr	sCMDextr
+e773 : c10d             					cmpb	#CR
+e775 : 260e             					bne		_sCMDbpInvalid
+                        					
+e777 : 8c0000           					cmpx	#RAM_ORG			; validate address within RAM
+e77a : 2509             					blo		_sCMDbpInvalid
+e77c : 8c7fff           					cmpx	#RAM_END
+e77f : 2204             					bhi		_sCMDbpInvalid
+                        					
+e781 : 3410             					pshs	x 					; save bp addr
+e783 : 2005             					bra		_sCMDbp1
+e785 : bde8b4           _sCMDbpInvalid		lbsr	sCMDinvalid
+e788 : 2036             					bra		_sCMDbpdone
+e78a : fc7fbd           _sCMDbp1         	ldd		BrkPtAddr			; verify if breakpo
+e78d : 10830000         					cmpd	#BrkPtOff
+e791 : 270e             					beq		_sCMDbp2			; breakpoint not existing
+e793 : 10830001         					cmpd	#BrkPtTriggered
+e797 : 2708             					beq		_sCMDbp2			; breakpoint can be set again				
+e799 : 8ee751           					ldx		#STR_BP1
+e79c : bde8ff           					lbsr	sPUTSTR
+e79f : 201f             					bra		_sCMDbpdone
+e7a1 : 8ee737           _sCMDbp2			ldx		#STR_BP
+e7a4 : bde8ff           					lbsr	sPUTSTR
+e7a7 : 3506             					puls	d					; restore bp addr
+e7a9 : fd7fbd           					std		BrkPtAddr			; save addr
+e7ac : 3406             					pshs	d
+e7ae : bdea7b           					lbsr	HEXWORD2MONPORT
+e7b1 : 3262             					leas	2,s
+e7b3 : a69f7fbd         					lda		[BrkPtAddr]			; save instruction
+e7b7 : b77fbf           					sta		BrkPtInst
+e7ba : 863f             					lda		#$3f				;swi instruction
+e7bc : a79f7fbd         					sta		[BrkPtAddr]			;replace by swi
+e7c0 : 39               _sCMDbpdone			rts							; exit
+                        
+                        ;----------------------------------------------------;
+e7c1 : 0d717569742064.. STR_QBP				db		CR,"quit debugging mode",0
+e7d6 : 0d6e6f7420696e.. STR_QBP1			db		CR,"not in debugging mode",0
+e7ed : fc7fbd           sCMDqbp	    	    ldd		BrkPtAddr			; verify if breakpoi
+e7f0 : 10830000         					cmpd	#BrkPtOff			; Off when not in debug mode
+e7f4 : 271f             					beq		_sCMDqbp1	
+e7f6 : 3406             					pshs	d
+e7f8 : 8ee7c1           					ldx		#STR_QBP
+e7fb : bde8ff           					lbsr	sPUTSTR
+e7fe : 3506             					puls	d
+e800 : 10830001         					cmpd	#BrkPtTriggered		; was triggered
+e804 : 2707             					beq		_sCMDqbp0
+e806 : b67fbf           					lda		BrkPtInst
+e809 : a79f7fbd         					sta		[BrkPtAddr]			; replace initial instruction 
+e80d : cc0000           _sCMDqbp0			ldd		#BrkPtOff	
+e810 : fd7fbd           					std		BrkPtAddr			; place in off state
+e813 : 2006             					bra		_sCMDqbpdone				
+e815 : 8ee7d6           _sCMDqbp1			ldx		#STR_QBP1
+e818 : bde8ff           					lbsr	sPUTSTR
+e81b : 39               _sCMDqbpdone		rts							; exit
+                        
+                        
+                        ;----------------------------------------------------;
+e81c : 0d73656e64206e.. STR_CMD_LDBAS		db		CR,"send now the BAS file",CR,0
+e834 : 454e440d00       STR_CMD_LDBASEND	db		"END",CR,0
+e839 : bde31b           sCMDldbas			lbsr	sRbReadCmd
+e83c : 5d               					tstb
+e83d : 10270073         					lbeq	sCMDinvalid				
+AS09 Assembler for M6809 [1.42].                                     Page   18
+--------------------------------- merge.a09 ----------------------------------
+
+e841 : 810d             					cmpa	#CR
+e843 : 1026006d         					lbne	sCMDinvalid  		; not CR, invalid CMD
+e847 : 8ee81c           					ldx		#STR_CMD_LDBAS
+e84a : bde8ff           					lbsr	sPUTSTR
+                        										
+                        					;------- read until 'END' --------------------
+e84d : 8ee834           _sCMDldbas0 		ldx		#STR_CMD_LDBASEND
+e850 : bde321           _sCMDldbas1			lbsr	sRbRead 			; read a byte					
+e853 : 5d               					tstb
+e854 : 27fa             					beq		_sCMDldbas1
+e856 : 810a             					cmpa    #10
+e858 : 27f6             					beq		_sCMDldbas1			; remove LF
+e85a : 3412             					pshs	a,x
+e85c : 1f89             					tfr		a,b
+e85e : bde000           					lbsr	sAPL_KeyboardData
+e861 : bde000           _sCMDldbas2			lbsr	BASICprocess		; BASIC process call
+e864 : bde000           					lbsr    isKeyboardData		; check if the data is pr
+e867 : 5d               					tstb
+e868 : 26f7             					bne		_sCMDldbas2			; loop until the data is compl
+e86a : 3512             					puls	x,a
+e86c : a180             					cmpa	,x+
+e86e : 26dd             					bne		_sCMDldbas0
+e870 : 1f10             					tfr		x,d
+e872 : 83e834           					subd	#STR_CMD_LDBASEND
+e875 : 10830004         					cmpd	#4
+e879 : 25d5             					blo		_sCMDldbas1
+e87b : 39               					rts
+                        
+                        ;----------------------------------------------------;
+e87c :                  sCMDbas				;------- extract ' ' ----------------------
+e87c : bde8bb           					lbsr	sCMDextr
+e87f : c120             					cmpb	#' '
+e881 : 2631             					bne		sCMDinvalid
+                        					
+                        					;------- extract 'BASIC code' with 'CR' ---------
+e883 : bde321           _sCMDbas0			lbsr	sRbRead
+e886 : 5d               					tstb
+e887 : 2716             					beq		_sCMDbasdone
+e889 : 3402             					pshs    a
+e88b : 1f89             					tfr		a,b
+e88d : bde000           					lbsr	sAPL_KeyboardData
+e890 : bde000           _sCMDbas1			lbsr	BASICprocess		; BASIC process call
+e893 : bde000           					lbsr    isKeyboardData		; check if the data is pr
+e896 : 5d               					tstb
+e897 : 26f7             					bne		_sCMDbas1			; loop until the data is complet
+e899 : 3502             					puls    a
+e89b : 810d             					cmpa    #CR					; CR ends the command
+e89d : 26e4             					bne		_sCMDbas0
+e89f : 39               _sCMDbasdone		rts	
+                        
+                        ;----------------------------------------------------;
+e8a0 : 0d696e76616c69.. STR_CMDinvalid		db		CR,"invalid command!!",CR,0
+e8b4 : 8ee8a0           sCMDinvalid			ldx		#STR_CMDinvalid
+e8b7 : bde8ff           					lbsr	sPUTSTR
+e8ba : 39               					rts
+                        ;}
+                        
+                        ;----------------------------------------------------;
+e8bb :                  sCMDextr ;{
+                        ;---------------------------------------------------;
+                        ; extract text command (converted in hex) until a ' ' 
+                        ; param: 	none
+AS09 Assembler for M6809 [1.42].                                     Page   19
+--------------------------------- merge.a09 ----------------------------------
+
+                        ; return: 	cmd value -> X, end condition -> B (NULL wh
+                        ;---------------------------------------------------;
+e8bb : 8e0000           					ldx		#0					; clear
+e8be : bde31b           _sCMDextr0			lbsr	sRbReadCmd 			; read a byte
+e8c1 : 5d               					tstb
+e8c2 : 271a             					beq		_sCMDextrEnd			; RB empty, B is NULL
+e8c4 : 1f89             					tfr		a,b					; B contains the end condition
+e8c6 : 8120             					cmpa	#' '				; end value?
+e8c8 : 2714             					beq		_sCMDextrEnd  		; return value already in B
+e8ca : 810d             					cmpa	#CR					; or CR ends ?
+e8cc : 2710             					beq		_sCMDextrEnd  		; not expected
+e8ce : bdeaf6           					lbsr	sTEXT2HEX			; convert
+e8d1 : 3402             					pshs	a					; save new value on stack
+e8d3 : 1f10             					tfr		x,d
+e8d5 : bdea63           					lbsr	sWLSL4bit
+e8d8 : ebe0             					addb	,s+					; add the new value and free 8-bit s
+e8da : 1f01             					tfr		d,x
+e8dc : 20e0             					bra		_sCMDextr0
+e8de : 39               _sCMDextrEnd     	rts
+                        ;}
+                        ;----------------------------------------------------;
+e8df :                  sExtrNByte ;{
+                        ;---------------------------------------------------
+                        ; asm call extract (text to hex) 
+                        ; param: 	A -> n byte to extract
+                        ; return:	out value -> D		
+                        ;---------------------------------------------------
+e8df : 3402             					pshs	a					; contains the count
+e8e1 : 8e0000           					ldx		#0					; clear
+e8e4 : bde321           _sExtrNByte0		lbsr	sRbRead				; read a byte
+e8e7 : 5d               					tstb
+e8e8 : 27fa             					beq     _sExtrNByte0 		; loop until RB no more em
+e8ea : bdeaf6           					lbsr	sTEXT2HEX			; convert
+e8ed : 3402             					pshs	a					; save
+e8ef : 1f10             					tfr		x,d
+e8f1 : bdea63           					lbsr	sWLSL4bit
+e8f4 : ebe0             					addb	,s+					; free 8-bit stack
+e8f6 : 1f01             					tfr		d,x
+e8f8 : 6ae4             					dec		,s					; decrease the count					
+e8fa : 26e8             					bne		_sExtrNByte0
+e8fc : 3261             _sExtrEnd        	leas	1,s					; puls, free end param
+e8fe : 39               					rts
+                        	;}
+                        ;}
+                        
+                        ;----------------------------------------------------;
+                        ; asm call send string on debug port
+                        ; param: 	X -> pointer
+                        ; return:	none
+                        ;----------------------------------------------------;
+e8ff : 3410             sPUTSTR         	pshs	x
+e901 : bdea6c           					lbsr	PUTSTR
+e904 : 3262             					leas	2,s
+e906 : 39               					rts
+                        ;}
+                        
+                        
+                        
+                        ;{ ---------------------------------------------------
+                        					code
+                        					
+e907 : b6d004           SELECTBANK0			lda		UART+4
+AS09 Assembler for M6809 [1.42].                                     Page   20
+--------------------------------- merge.a09 ----------------------------------
+
+e90a : 8a01             					ora		#%00000001		; clear ROM addr line DTR_n=1
+e90c : b7d004           					sta		UART+4
+e90f : 39               					rts					
+e910 : b6d004           SELECTBANK1			lda		UART+4
+e913 : 84fe             					anda	#%11111110		; set ROM addr line DTR_n=0
+e915 : b7d004           					sta		UART+4
+e918 : 39               					rts
+                        					
+                        ;----------------------------------------------------;
+                        ; write to EEPROM from RAM
+                        ; param: 			0,s -> return addr
+                        ;			4th arg:2,s -> protection 	-> 0,u
+                        ;			3rd arg:4,s -> len			-> 2,u
+                        ;			2nd arg:6,s -> dst 			-> 4,u
+                        ;			1st arg:8,s -> src 			-> 6,u
+                        ; return:	CheckSum16 value -> D
+                        ;----------------------------------------------------;
+e919 : 3470             WriteEEP			pshs	u,y,x				; save used pointers (+6 byte
+e91b : 3368             					leau	8,s					; set 4th arg to 0,u (8 bytes totall
+                        										
+e91d : ecc4             					ldd		0,u					; get the protection param					
+e91f : 10830000         					cmpd	#0					; 1 is the XICOR protection
+e923 : 2702             					beq		_WriteEEP1
+e925 : 8d2d             					bsr		DISAXICORWP					
+                        				
+e927 : 10ae44           _WriteEEP1			ldy		4,u					; get the params (X = src, Y
+e92a : ae46             					ldx		6,u	
+e92c : ec42             					ldd		2,u					; get length value
+e92e : 3406             					pshs	d					; create a length counter variable to 
+                        					
+e930 : a680             _WriteEEP2			lda		,x+
+e932 : a1a4             					cmpa	,y
+e934 : 2705             					beq		_no_change
+e936 : a7a4             					sta		,y
+e938 : bde9c2           					lbsr	DELAY_10MS			; eeprom 10 ms delay loop				
+e93b : 3121             _no_change			leay	1,y					; inc the pointer			
+e93d : ece4             					ldd		0,s					; dec length counter variable
+e93f : 830001           					subd	#1
+e942 : ede4             					std		0,s
+e944 : 26ea             					bne		_WriteEEP2
+e946 : 3262             					leas	2,s					; free the length counter
+                        					
+e948 : ecc4             					ldd		0,u					; get the protection param
+e94a : 10830000         					cmpd	#0					; 1 is the XICOR protection
+e94e : 2702             					beq		_WriteEEP5
+e950 : 8d41             					bsr		ENAXICORWP				
+e952 : 35f0             _WriteEEP5			puls	x,y,u,pc			; restore used registers
+                        
+                        ;----------------------------------------------------;
+                        ; asm call remove XICOR 28C64 / 28C256 eeprom write pr
+                        ; param:  none
+                        ; return: none
+                        ;----------------------------------------------------;
+e954 : 3411             DISAXICORWP			pshs	ccr,x				; save ccr (for the disabl
+e956 : 1a50             					orcc	#%01010000			; disable interrupts				
+e958 : 8db6             					bsr		SELECTBANK1
+e95a : 8e9555           					ldx 	#$1555+ROM1_ORG  	; $1555 + base addr / $555
+e95d : 86aa             					lda		#$aa
+e95f : a784             					sta		,x
+e961 : 8da4             					bsr		SELECTBANK0
+e963 : 8eaaaa           					ldx 	#$2aaa+ROM1_ORG
+e966 : 8655             					lda		#$55
+AS09 Assembler for M6809 [1.42].                                     Page   21
+--------------------------------- merge.a09 ----------------------------------
+
+e968 : a784             					sta		,x
+e96a : 8da4             					bsr		SELECTBANK1
+e96c : 8e9555           					ldx 	#$1555+ROM1_ORG
+e96f : 8680             					lda		#$80
+e971 : a784             					sta		,x
+e973 : 8e9555           					ldx 	#$1555+ROM1_ORG
+e976 : 86aa             					lda		#$aa
+e978 : a784             					sta		,x
+e97a : 8d8b             					bsr		SELECTBANK0
+e97c : 8eaaaa           					ldx 	#$2aaa+ROM1_ORG
+e97f : 8655             					lda		#$55
+e981 : a784             					sta		,x
+e983 : 8d8b             					bsr		SELECTBANK1
+e985 : 8e9555           					ldx 	#$1555+ROM1_ORG
+e988 : 8620             					lda		#$20
+e98a : a784             					sta		,x				
+e98c : bde907           					bsr		SELECTBANK0
+e98f : 8d31             					bsr		DELAY_10MS				; eeprom 10 ms delay loop
+e991 : 3591             					puls	x,ccr,pc				; restore registers
+                        				
+                        ;----------------------------------------------------;
+                        ; asm call enable XICOR 28C64 / 28C256 eeprom write pr
+                        ; param:  none
+                        ; return: none
+                        ;----------------------------------------------------;
+e993 : 3411             ENAXICORWP			pshs	ccr,x				; save ccr (for the disabli
+e995 : 1a50             					orcc	#%01010000			; disable interrupts				
+e997 : f68000           					ldb		ROM1_ORG			; get the byte
+e99a : bde910           					bsr		SELECTBANK1
+e99d : 8e9555           					ldx 	#$1555+ROM1_ORG  	;$1555 + base addr 
+e9a0 : 86aa             					lda		#$aa
+e9a2 : a784             					sta		,x
+e9a4 : bde907           					bsr		SELECTBANK0
+e9a7 : 8eaaaa           					ldx 	#$2aaa+ROM1_ORG
+e9aa : 8655             					lda		#$55
+e9ac : a784             					sta		,x
+e9ae : bde910           					bsr		SELECTBANK1
+e9b1 : 8e9555           					ldx 	#$1555+ROM1_ORG
+e9b4 : 86a0             					lda		#$a0
+e9b6 : a784             					sta		,x
+e9b8 : bde907           					bsr		SELECTBANK0
+                        					; re-write the byte
+e9bb : f78000           					stb		ROM1_ORG ;,x
+e9be : 8d02             					bsr		DELAY_10MS			; eeprom 10 ms delay loop
+e9c0 : 3591             					puls	x,ccr,pc			; restore registers
+                        
+e9c2 : cc0bb8           DELAY_10MS			ldd		#3000 				; delay 10ms @ 2.0MHz -> 2
+e9c5 : 830001           _DELAY_10MS			subd	#1			
+e9c8 : 26fb             					bne		_DELAY_10MS			; eeprom 10 ms delay loop	
+e9ca : 39               					rts
+                        
+                        ;----------------------------------------------------;
+                        ; asm call ROM integrity check
+                        ; param:  D -> CheckSum16 calculated value
+                        ;         X -> CheckSum16 addr
+                        ; return: 0 -> B when succeed
+                        ;----------------------------------------------------;
+e9cb : 0d524f4d207665.. ROMcheckSTR0		db		13,"ROM verified",CR,0
+e9da : 0d436865636b53.. ROMcheckSTR1		db		13,"CheckSum16 ",0
+e9e7 : 20776173206361.. ROMcheckSTR2		db		" was calculated instead ",0
+ea00 : 2c20524f4d2066.. ROMcheckSTR3		db		", ROM failure!",CR,0
+ea10 : 10a384           sROMcheck			cmpd	,x
+AS09 Assembler for M6809 [1.42].                                     Page   22
+--------------------------------- merge.a09 ----------------------------------
+
+ea13 : 272a             					beq		_sROMok
+ea15 : 3410             					pshs	x					; save							
+ea17 : 3406             					pshs	d					; param for HEXWORD2MONPORT							
+ea19 : 8ee9da           					ldx		#ROMcheckSTR1
+ea1c : bde8ff           					lbsr	sPUTSTR
+ea1f : bdea7b           					lbsr	HEXWORD2MONPORT	
+ea22 : 3262             					leas	2,s					; free the last push
+ea24 : 8ee9e7           					ldx		#ROMcheckSTR2
+ea27 : bde8ff           					lbsr	sPUTSTR
+ea2a : 3510             					puls    x
+ea2c : ec84             					ldd		,x
+ea2e : 3406             					pshs	d					; param for HEXWORD2MONPORT							
+ea30 : bdea7b           					lbsr	HEXWORD2MONPORT
+ea33 : 3262             					leas	2,s					; free the last push					
+ea35 : 8eea00           					ldx		#ROMcheckSTR3		; failure
+ea38 : bde8ff           					lbsr	sPUTSTR
+ea3b : c601             					ldb		#1					; non zero return value
+ea3d : 2007             					bra		sROMcheckdone		; to be removed		
+ea3f : 8ee9cb           _sROMok				ldx		#ROMcheckSTR0		; success
+ea42 : bde8ff           					lbsr	sPUTSTR
+ea45 : 5f               					clrb						; zero return value
+ea46 : 39               sROMcheckdone		rts
+                        
+                        ;----------------------------------------------------;
+                        ; calculate the 16-bit CheckSum of the ROM
+                        ; param: 			0,s -> return addr
+                        ;			3rd arg:2,s -> CS16InitialValue -> 0,u
+                        ;			2nd arg:4,s -> CS16EndAddr		-> 2,u
+                        ;			1st arg 6,s -> start addr 		-> 4,u
+                        ; return:	CheckSum16 value -> D
+                        ;----------------------------------------------------;
+ea47 :                  getCheckSum16	;{	
+ea47 : 3450             					pshs	u,x					; save used registers (+4 bytes on s
+ea49 : 3366             					leau	6,s					; set arg1 to 0,u (4 bytes after the
+ea4b : ae44             					ldx		4,u					; get 3rd arg start addr
+ea4d : ec81             _getCheckSum160		ldd		,x++
+ea4f : e3c4             					addd	0,u  				; 16-bit checksum
+ea51 : edc4             					std		0,u
+ea53 : ac42             					cmpx	2,u 				; end
+ea55 : 26f6             					bne		_getCheckSum160
+ea57 : 35d0             					puls	x,u,pc				; restore used registers
+                        ;}
+                        
+                        ;----------------------------------------------------;
+                        ; asm call calculate the string length
+                        ; param: 	X -> pointer
+                        ; return:	length -> D
+                        ;----------------------------------------------------;
+ea59 :                  sStrlen  ;{
+ea59 : 5f               					clrb
+ea5a : a680             _sstrlen1 			lda		,x+
+ea5c : 2704             					beq		_sstrlenDone 		; string ends with NULL
+ea5e : 5c               					incb
+ea5f : 20f9             					bra		_sstrlen1
+ea61 : 4f               					clra
+ea62 : 39               _sstrlenDone		rts
+                        ;}
+                        
+                        ;----------------------------------------------------;
+                        ; asm call shift left D 4-bit
+                        ; param: 	D -> value
+                        ; return:	out -> D
+AS09 Assembler for M6809 [1.42].                                     Page   23
+--------------------------------- merge.a09 ----------------------------------
+
+                        ;----------------------------------------------------;
+ea63 : 58               sWLSL4bit	       	lslb
+ea64 : 49               					rola
+ea65 : 58               					lslb
+ea66 : 49               					rola
+ea67 : 58               					lslb
+ea68 : 49               					rola
+ea69 : 58               					lslb
+ea6a : 49               					rola
+ea6b : 39               					rts
+                        
+                        ;----------------------------------------------------;
+                        ; send string on debug port
+                        ; param: 	2,s -> string pointer
+                        ; return:	none
+                        ;----------------------------------------------------;
+ea6c :                  PUTSTR
+ea6c : 3410             print_De   			pshs	x				; +2 bytes on stack
+ea6e : ae64             					ldx		4,s
+ea70 : e680             _putstr0			ldb		,x+
+ea72 : 2705             					beq		_putstr1 		; string ends with NULL
+ea74 : bde001           					lbsr	sMON_PORT_WR
+ea77 : 20f7             					bra		_putstr0
+ea79 : 3590             _putstr1			puls	x,pc
+                        
+                        ;----------------------------------------------------;
+                        ; send Word on debug port, displayed in HEX
+                        ; param: 	2,s -> 8-bit high byte
+                        ;			3,s -> 8-bit low byte
+                        ; return:	none, D is not preserved
+                        ;----------------------------------------------------;
+ea7b :                  HEXWORD2MONPORT		
+ea7b : 3440             HEXWORD2			pshs	u					; +2 bytes on stack
+ea7d : 3364             					leau	4,s					; fix arg1 pointer to 0,u	
+ea7f : c624             					ldb		#'$'
+ea81 : bde001           					lbsr	sMON_PORT_WR
+ea84 : e6c4             					ldb		0,u		  			; param high byte
+ea86 : 3406             					pshs	d
+ea88 : bdead6           					lbsr	DHEX2TEXT
+ea8b : 3262             					leas	2,s 
+ea8d : 3404             					pshs	b					; save low byte
+ea8f : 1f89             					tfr		a,b
+ea91 : f7d000           					stb		DEBUG_MON_PORT		; write high byte (write dir
+ea94 : 3504             					puls	b					; get low byte
+ea96 : f7d000           					stb		DEBUG_MON_PORT		; write low byte (write dire
+ea99 : e641             					ldb		1,u		  			; param low byte
+ea9b : 3406             					pshs	d
+ea9d : bdead6           					lbsr	DHEX2TEXT
+eaa0 : 3262             					leas	2,s 
+eaa2 : 3404             					pshs	b					; save low byte
+eaa4 : 1f89             					tfr		a,b
+eaa6 : f7d000           					stb		DEBUG_MON_PORT		; write high byte (write dir
+eaa9 : 3504             					puls	b					; get low byte
+eaab : f7d000           					stb		DEBUG_MON_PORT		; write low byte (write dire
+eaae : 35c0             					puls	u,pc
+                        ;}
+                        
+                        ;----------------------------------------------------;
+                        ; send Byte on debug port, displayed in HEX
+                        ; param: 	2,s -> xx
+                        ;			3,s -> 8-bit value
+                        ; return:	none, D is not preserved
+AS09 Assembler for M6809 [1.42].                                     Page   24
+--------------------------------- merge.a09 ----------------------------------
+
+                        ;----------------------------------------------------;
+eab0 :                  HEXBYTE2MONPORT
+eab0 : 3440             HEXBYTE2			pshs	u
+eab2 : 3364             					leau	4,s					; fix arg1 pointer to 0,u		
+eab4 : c624             					ldb		#'$'
+eab6 : bde001           					lbsr	sMON_PORT_WR
+eab9 : e641             					ldb		1,u
+eabb : 3406             					pshs	d
+eabd : bdead6           					lbsr	DHEX2TEXT
+eac0 : 3262             					leas	2,s 
+eac2 : 3404             					pshs	b
+eac4 : 1f89             					tfr		a,b
+eac6 : f7d000           					stb		DEBUG_MON_PORT			; write high nibble
+eac9 : 3504             					puls	b
+eacb : f7d000           					stb		DEBUG_MON_PORT			; write low nibble
+eace : 35c0             					puls	u,pc
+                        
+                        ;----------------------------------------------------;
+                        ; send a byte on debug port
+                        ; param: 	2,s -> xx
+                        ;			3,s -> 8-bit value
+                        ; return:	none
+                        ;----------------------------------------------------;
+ead0 :                  BYTE2MONPORT
+ead0 : e663             BYTE2MON			ldb		3,s
+ead2 : bde001           					lbsr	sMON_PORT_WR
+ead5 : 39               					rts
+                        
+                        ;----------------------------------------------------;
+                        ; convert a byte to ascii hex value
+                        ; param: 	2,s -> xx
+                        ;			3,s -> 8-bit value
+                        ; return:	high nible -> A
+                        ;			low nibble -> B
+                        ;----------------------------------------------------;
+ead6 : a663             DHEX2TEXT	   		lda		3,s
+ead8 : 44               					lsra
+ead9 : 44               					lsra
+eada : 44               					lsra
+eadb : 44               					lsra
+eadc : 8d0b             					bsr		sHEX2TEXT
+eade : 1f89             					tfr		a,b
+eae0 : a663             					lda		3,s
+eae2 : 840f             					anda	#$f					;lower nible
+eae4 : 8d03             					bsr		sHEX2TEXT
+eae6 : 1e89             					exg		a,b
+eae8 : 39               					rts
+                        
+                        ;----------------------------------------------------;
+                        ; asm call hex to dec conversion
+                        ; param: 	A -> hex value
+                        ; return:	dec out -> A
+                        ;----------------------------------------------------;
+eae9 : 840f             sHEX2TEXT			anda	#$f					;lower nible
+eaeb : 8109             					cmpa	#9
+eaed : 2204             					bhi     sHEX2TEXT_1
+eaef : 8b30             					adda	#'0'				;for number
+eaf1 : 2002             					bra     sHEX2TEXT_2
+eaf3 : 8b37             sHEX2TEXT_1	    	adda	#$37				;for letter
+eaf5 : 39               sHEX2TEXT_2			rts
+                        
+                        ;----------------------------------------------------;
+AS09 Assembler for M6809 [1.42].                                     Page   25
+--------------------------------- merge.a09 ----------------------------------
+
+                        ; asm call dec to hex conversion
+                        ; param: 	A -> dec value
+                        ; return:	hex out -> A
+                        ;----------------------------------------------------;
+eaf6 : 8139             sTEXT2HEX			cmpa	#'9'
+eaf8 : 2204             					bhi     sTEXT2HEX_1
+eafa : 840f             					anda	#$f					;for number
+eafc : 200a             					bra     sTEXT2HEX_2
+eafe : 8146             sTEXT2HEX_1      	cmpa	#'F'
+eb00 : 2204             					bhi     sTEXT2HEX_11
+eb02 : 8037             					suba	#$37				;for higher case letter
+eb04 : 2002             					bra     sTEXT2HEX_2
+eb06 : 8057             sTEXT2HEX_11     	suba	#$57				;for lower case letter
+eb08 : 39               sTEXT2HEX_2			rts
+                        ;Interrupt service routines
+                        				code
+                        				
+                        ;{ ---------------------------------------------------
+eb09 : 7d7ff6           FIRQ  			tst		IntVectFIRQ			; cmp the new vector store
+eb0c : 2605             				bne		_firq
+eb0e : 7d7ff7           				tst		IntVectFIRQ+1		; cmp the new vector stored
+eb11 : 2704             				beq		_firq0
+eb13 : 6e9f7ff6         _firq			jmp		[IntVectFIRQ]		; execute the re-mapped is
+eb17 : 3416             _firq0			pshs	x,d
+eb19 : 8e7fc2           				ldx     #Rbuffer			; get buffer base addr				
+eb1c : b67fc0           				lda		RbHead				; head index value
+eb1f : 3086             				leax	a,x					; set X to the head pointer
+eb21 : 4c               				inca				
+eb22 : 8120             				cmpa	#RbSize
+eb24 : 2501             				blo		_firq1
+eb26 : 4f               				clra
+eb27 : b17fc1           _firq1			cmpa	RbTail
+eb2a : 260b             				bne		_firq2				; stop filling before reaching the 
+eb2c : a664             				lda		4,s					; modify the stacked CCR
+eb2e : 8a40             				ora		#%01000000			; disable firq only when fifo fu
+eb30 : a764             				sta		4,s
+eb32 : 7c7fe2           				inc 	RbDectCR 			; CR detect on, otherwise the fif
+eb35 : 2012             				bra		_firq3
+eb37 : b77fc0           _firq2			sta     RbHead
+eb3a : bde0e7           				lbsr 	UartRead
+eb3d : 4d               				tsta
+eb3e : 2707             				beq		_firq22
+eb40 : c10d             				cmpb	#CR					; CR compare
+eb42 : 2603             				bne		_firq22
+eb44 : 7c7fe2           				inc 	RbDectCR 			; CR found
+eb47 : e784             _firq22			stb		,x					; store data to RB head pointer
+eb49 : 3516             _firq3			puls	x,d	
+                        
+eb4b :                  IRQ
+eb4b :                  NMI
+eb4b :                  SWI1
+eb4b :                  SWI3			
+eb4b : 3b               SWI2			rti
+                        ;}
+                        
+                        ;{ ---------------------------------------------------
+fff0 =                  				org		ROM_Integrity
+fff0 : d359             				dw		CheckSum16_ROM0
+                        				
+fff2 =                  				org    INT_VECTOR
+                        
+fff2 : eb4b             				dw      SWI3
+AS09 Assembler for M6809 [1.42].                                     Page   26
+--------------------------------- merge.a09 ----------------------------------
+
+fff4 : eb4b             				dw 		SWI2
+fff6 : eb09             				dw      FIRQ
+fff8 : eb4b             				dw      IRQ
+fffa : eb4b             				dw      SWI1
+fffc : eb4b             				dw      NMI
+fffe : e069             				dw      RESET
+                        ;}
+                        				end
+                        
+                        
+                        ;{ ---------------------- asm Global Variables and Sta
+                        					
+7fbd =                  BSS_SEG_ORG			equ     RAM_END+1 -3-35-1-10-4-14 			; a
+7fbd =                  GV_StackBeginAddr	equ		BSS_SEG_ORG							; C global va
+7fbd =                  LV_StackBeginAddr	equ		BSS_SEG_ORG - _GLOBALS				; loc
                         
                         ;{ ---------------------------------------------------
                         					bss						; bss segment is in RAM (hidden in SRec 
@@ -63,1301 +1656,13 @@ fff2 =                  INT_VECTOR			equ		$fff2
 7ff2 =                  IntVectSWI3			ds		2
 7ff4 =                  IntVectSWI2			ds		2
 7ff6 =                  IntVectFIRQ			ds		2
-AS09 Assembler for M6809 [1.42].                                     Page    2
---------------------------------- merge.a09 ----------------------------------
-
 7ff8 =                  IntVectIRQ			ds		2
 7ffa =                  IntVectSWI1			ds		2
 7ffc =                  IntVectNMI			ds		2
 7ffe =                  IntVectSTART		ds		2
                         
-                        ;}
-                        
-                        					code
-f000 =                  					org     MON_ORG;---------------------------------
-                        				code
-                        				
-                        ;----------------------------------------------------;
-                        ; UART Init
-                        ; param: 	none
-                        ; return:	none
-                        ;----------------------------------------------------;
-f000 :                  UART_Init	;{
-f000 : 8680             				lda		#$80			; DLAB=1
-f002 : b7d003           				sta		UART+3
-                        				
-                        										; 12MHz ->  78:baudrate 9600,               
-                        										; 16MHz ->                    26:baudrate 38
-                        										; 24MHz -> 156:baudrate 9600, 39:baudrate 38
-f005 : 8611             				lda		#17
-f007 : b7d000           				sta		UART
-f00a : 8600             				lda		#$00	  	
-f00c : b7d001           				sta		UART+1
-                        				
-f00f : 8601             				lda		#$01	  		; Fifo enable
-f011 : b7d002           				sta		UART+2
-                        				
-f014 : 8603             				lda		#$03			; DLAB=0, config 8N1 
-f016 : b7d003           				sta		UART+3
-                        				
-f019 : 8601             				lda		#$01			; enable rx interrrupt
-f01b : b7d001           				sta		UART+1
-f01e : 39               				rts
-                        ;}
-                        
-                        ;----------------------------------------------------;
-                        ; UART Read
-                        ; param: 	none
-                        ; return:	read byte -> B when when A != 0
-                        ;----------------------------------------------------;
-f01f :                  UartRead ;{
-f01f : b6d005           				lda		UART+5 			; check if a byte is available
-f022 : 8401             				anda	#1				; a contains not NULL when a byte avail
-f024 : 2703             				beq		_UartRead1
-f026 : f6d000           				ldb 	UART   			; read first byte
-f029 : 39               _UartRead1		rts
-                        ;}
-                        
-                        ;----------------------------------------------------;
-                        ; wait until a char available or 256 polling cycles ti
-                        ; param: 	none
-                        ; return:	none
-                        ;----------------------------------------------------;
-f02a :                  waitdata ;{		
-f02a : 5f               				clrb
-f02b : 5a               _waitdata1		decb
-f02c : 2707             				beq		_waitdata2 		; exit
-f02e : b6d005           				lda		UART+5 			; check if a byte is available
-AS09 Assembler for M6809 [1.42].                                     Page    3
---------------------------------- merge.a09 ----------------------------------
-
-f031 : 8401             				anda	#1
-f033 : 27f6             				beq		_waitdata1		
-f035 : 39               _waitdata2		rts
-                        ;}
-                        
-                        ;----------------------------------------------------;
-                        ; wait until the remaining char is sent (fifo empty)
-                        ; param: 	none
-                        ; return:	none
-                        ;----------------------------------------------------;
-f036 :                  waitSendDone ;{
-f036 : b6d005           				lda		UART+5 			; check if uart TX ready (waiting f
-f039 : 8420             				anda	#$20
-f03b : 27f9             				beq		waitSendDone		
-f03d : 39               				rts
-                        ;}
-                        
-                        ;----------------------------------------------------;
-                        ; wait CTS
-                        ; param: 	none
-                        ; return:	none
-                        ;----------------------------------------------------;
-f03e :                  waitCTS ;{
-f03e : b6d006           				lda		UART+6 			; read the moden status register
-f041 : 8410             				anda	#$10
-f043 : 27f9             				beq		waitCTS
-f045 : 39               				rts
-                        ;}
-                        ;{ ---------------------------------------------------
-                        					code
-                        					
-f046 : 302e372e322e3000 MON_VERSION     	db		"0.7.2.0",0			; version [major, m
-                        					
-                        ;---------------------------------------------------
-                        ; write commands menu with version in terminal
-                        ;---------------------------------------------------
-f04e : 0d737461727469.. STR_MONITOR      	db      CR,"starting monitor process
-f06c : 0d4d6f6e69746f.. STR_VERSION			db		CR,"Monitor for 6809 Computer v",0
-f089 : 0d636f6d6d616e.. STR_COMMAND			db		CR,"command menu",CR
-f097 : 72205b66697273.. 					db		"r [first addr], optional [n repeat] -> read 
-f0d1 : 77205b61646472.. 					db		"w [addr] [data], optional [n repeat] -> writ
-f110 : 65205b7372635d.. 					db		"e [src] [dst] [length], optional [protection
-f157 : 6c206f72206c20.. 					db		"l or l [offset] -> load a SRec data",CR
-f17b : 67205b61646472.. 					db		"g [addr] -> execute at the address",CR
-f19e : 73205b70726f63.. 					db		"s [process ID] -> stop the process",CR
-f1c1 : 71202d3e207175.. 					db		"q -> quit debugging mode",CR
-f1da : 62205b61646472.. 					db		"b [addr] -> debugging mode, set a breakpoint
-f216 : 71202d3e207175.. 					db		"q -> quit debugging mode",CR
-f22f : 42205b42415349.. 					db		"B [BASIC line entry]",CR
-f244 : 4c202d3e206c6f.. 					db		"L -> load a BASIC program",CR
-f25e : 68202d3e207468.. 					db		"h -> this menu",CR,0
-                        
-f26e : cc0000           sMONITORSTART		ldd		#BrkPtOff			; init break point var
-f271 : fd7fbd           					std		BrkPtAddr										
-f274 : 17002c           					lbsr	sRbInit				; monitor init ring buffer
-f277 : 1cbf             					andcc	#ENABLE_MON_INT		; enable monitor interrupt
-                        					
-f279 : 8ef04e           					ldx		#STR_MONITOR		; monitor start-up message
-f27c : 17061d           					lbsr	sPUTSTR				;	
-f27f : c610             					ldb		#MONITOR_PROCESS_ID
-f281 : 3406             					pshs	d
-f283 : 1707aa           					lbsr	HEXBYTE2MONPORT
-AS09 Assembler for M6809 [1.42].                                     Page    4
---------------------------------- merge.a09 ----------------------------------
-
-f286 : c60d             					ldb		#CR
-f288 : 3406             					pshs	d
-f28a : 1707c3           					lbsr	BYTE2MONPORT
-f28d : 3264             					leas	4,s					; clear 2 pushes
-f28f : 39               					rts
-                        												; print help menu at startup
-f290 : 8ef06c           sMONITORMENU		ldx		#STR_VERSION
-f293 : 170606           					lbsr	sPUTSTR
-f296 : 8ef046           					ldx		#MON_VERSION
-f299 : 170600           					lbsr	sPUTSTR
-f29c : 8ef089           					ldx		#STR_COMMAND
-f29f : 1705fa           					lbsr	sPUTSTR
-f2a2 : 39               					rts
-                        
-                        	;{ --------------------------------------------------
-f2a3 :                  sRbInit	
-                        		;---------------------------------------------------
-                        		; asm call init ring buffer
-                        		;---------------------------------------------------
-                        		;{
-f2a3 : 7f7fc0           					clr		RbHead
-f2a6 : 7f7fc1           					clr		RbTail
-f2a9 : 7f7fe2           					clr		RbDectCR
-f2ac : 39               					rts
-                        		;}
-                        
-f2ad :                  sRbReadCmd 
-                        		;---------------------------------------------------
-                        		; asm call read a byte from ringbuffer (a 'CR' must 
-                        		; param:	none
-                        		; return:	cmd value -> A. when invalid, NULL -> B
-                        		;---------------------------------------------------
-                        		;{
-f2ad : 5f               					clrb						; no char by default
-f2ae : b67fe2           					lda		RbDectCR
-f2b1 : 2724             					beq		_sRbRead3			; still no CR in the cmd buffer
-                        		
-f2b3 : f67fc1           sRbRead				ldb		RbTail
-f2b6 : f17fc0           					cmpb	RbHead
-f2b9 : 2716             					beq		_sRbRead11			; fifo empty when tail = head
-f2bb : 3410             					pshs	x
-f2bd : 8e7fc2           					ldx		#Rbuffer
-f2c0 : a685             					lda		b,x
-f2c2 : 3510             					puls	x
-f2c4 : 5c               					incb						; inc tail index
-f2c5 : c120             					cmpb	#RbSize
-f2c7 : 2501             					blo		_sRbRead1
-f2c9 : 5f               					clrb						; wrap RbTail
-f2ca : f77fc1           _sRbRead1			stb		RbTail				; save updated tail index o
-f2cd : c601             					ldb		#1					; not null when valid
-f2cf : 2004             					bra		_sRbRead2
-f2d1 : 7f7fe2           _sRbRead11			clr		RbDectCR			; no more CR possible
-f2d4 : 5f               					clrb						; no char
-f2d5 : 1cbf             _sRbRead2			andcc	#ENABLE_MON_INT		; re-enable int in 
-f2d7 : 39               _sRbRead3			rts
-                        
-                        	;}
-                        
-f2d8 :                  sMonProcessCmd
-                        		;---------------------------------------------------
-                        		; asm call extract and execute the cmd
-                        		;---------------------------------------------------
-AS09 Assembler for M6809 [1.42].                                     Page    5
---------------------------------- merge.a09 ----------------------------------
-
-                        		;{
-f2d8 : 8dd3             					bsr		sRbReadCmd
-f2da : 5d               					tstb						; RB empty ?
-f2db : 273e             					beq		_sMonProcessCmd					
-f2dd : 8168             					cmpa	#'h'
-f2df : 273b             					beq		sCMDhelp 			; help command
-f2e1 : 8172             					cmpa	#'r'
-f2e3 : 2746             					beq		sCMDrd  			; read command
-f2e5 : 8177             					cmpa	#'w'
-f2e7 : 102700b7         					lbeq	sCMDwr  			; write command
-f2eb : 8165             					cmpa	#'e'
-f2ed : 1027019a         					lbeq	sCMDew 				; eeprom write command
-f2f1 : 816c             					cmpa	#'l'
-f2f3 : 1027028c         					lbeq	sCMDld  			; load SRec command
-f2f7 : 8167             					cmpa	#'g'
-f2f9 : 10270366         					lbeq	sCMDgo  			; Go command
-f2fd : 8173             					cmpa	#'s'
-f2ff : 102703a0         					lbeq	sCMDStp  			; Stop process command
-f303 : 8162             					cmpa	#'b'
-f305 : 102703fd         					lbeq	sCMDbp  			; breakpoint command
-f309 : 8171             					cmpa	#'q'
-f30b : 1027047b         					lbeq	sCMDqbp  			; stop debugging command
-f30f : 8142             					cmpa	#'B'
-f311 : 10270504         					lbeq	sCMDbas  			; BASIC line entry command
-f315 : 814c             					cmpa	#'L'
-f317 : 102704bb         					lbeq	sCMDldbas			; load BASIC program command
-f31b : 39               _sMonProcessCmd		rts  						; cmd no existing
-                        
-                        			;--------------------------------------------------
-f31c : 8d8f             sCMDhelp 			bsr		sRbReadCmd
-f31e : 5d               					tstb
-f31f : 2709             					beq		_sCMDhelp				
-f321 : 810d             					cmpa	#CR
-f323 : 1026052a         					lbne	sCMDinvalid  		; not CR, invalid CMD
-f327 : 17ff66           					lbsr	sMONITORMENU
-f32a : 39               _sCMDhelp			rts							; exit
-                        			
-                        			;--------------------------------------------------
-f32b :                  sCMDrd
-0000 =                  RdAddr				equ		0					; uint RdAddr index
-0002 =                  RdRepeat			equ		2					; uint Count index
-f32b : 3440             					pshs	u
-f32d : 327e             					leas	-2,s				; allocate 16-bit
-f32f : 327e             					leas	-2,s				; allocate 16-bit
-f331 : 33e4             					leau	,s					; use the U as pointer
-f333 : 4f               					clra
-f334 : 5f               					clrb
-f335 : ed42             					std		RdRepeat,u 			; set to 0 by default
-                        				
-                        					;------- extract the ' ' only -------------------
-f337 : 17051e           					lbsr	sCMDextr
-f33a : c120             					cmpb	#' '
-f33c : 2615             					bne		_sCMDrdinvalid	
-                        				
-                        					;------- extract 'raddr' --------------------
-f33e : 170517           					lbsr	sCMDextr
-f341 : 5d               					tstb
-f342 : 270f             					beq		_sCMDrdinvalid
-f344 : af40             					stx		RdAddr,u 			; save read param 1
-f346 : c10d             					cmpb	#CR					; check if a repeat param follows
-f348 : 2714             					beq		_sCMDexe_rd0
-                        				
-AS09 Assembler for M6809 [1.42].                                     Page    6
---------------------------------- merge.a09 ----------------------------------
-
-                        					;------- extract the optional 'repeat' ----------
-f34a : 17050b           					lbsr	sCMDextr
-f34d : af42             					stx		RdRepeat,u 			; save read param 2
-f34f : c10d             					cmpb	#CR
-f351 : 270b             					beq		_sCMDexe_rd0
-f353 : 1704fb           _sCMDrdinvalid		lbsr	sCMDinvalid
-f356 : 2043             					bra		_sCMDrddone
-                        				
-f358 : 0d7265616400     STR_CMD_rd			db		CR,"read",0
-f35e : 8ef358           _sCMDexe_rd0		ldx		#STR_CMD_rd
-f361 : 170538           					lbsr	sPUTSTR
-                        				
-f364 : c60d             _sCMDexe_rd1   		ldb		#CR
-f366 : 170720           					lbsr	sMON_PORT_WR		; CR when begin with addr
-f369 : ec40             					ldd		RdAddr,u
-f36b : 3406             					pshs	d
-f36d : 17068b           					lbsr	HEXWORD2MONPORT
-f370 : 3262             					leas	2,s
-f372 : c620             _sCMDexe_rd2		ldb		#' '
-f374 : 170712           					lbsr	sMON_PORT_WR
-f377 : e6d800           					ldb		[RdAddr,u]
-f37a : 3406             					pshs	d
-f37c : 1706b1           					lbsr	HEXBYTE2MONPORT
-f37f : 3262             					leas	2,s
-f381 : ec42             					ldd		RdRepeat,u
-f383 : 10830000         					cmpd	#0
-f387 : 2712             					beq		_sCMDrddone
-f389 : 830001           					subd	#1
-f38c : ed42             					std		RdRepeat,u
-f38e : ec40             					ldd		RdAddr,u
-f390 : c30001           					addd	#1
-f393 : ed40             					std		RdAddr,u
-f395 : c41f             					andb	#$1f
-f397 : 27cb             					beq		_sCMDexe_rd1		; write addr at begin
-f399 : 20d7             					bra		_sCMDexe_rd2
-f39b : 3262             _sCMDrddone			leas	2,s					; free 16-bit param 2
-f39d : 3262             					leas	2,s					; free 16-bit param 1
-f39f : 3540             					puls	u
-f3a1 : 39               					rts  						; exit
-                        
-                        ;----------------------------------------------------;
-f3a2 :                  sCMDwr
-0000 =                  WrAddr				equ		0					; uint WrAddr index
-0002 =                  WrData				equ		2					; uchar WrData index
-0003 =                  WrRepeat			equ		3					; uint repeat
-f3a2 : 3440             					pshs	u
-f3a4 : 327e             					leas	-2,s				; allocate 16-bit
-f3a6 : 327f             					leas	-1,s				; allocate 8-bit
-f3a8 : 327e             					leas	-2,s				; allocate 16-bit
-f3aa : 33e4             					leau	,s					; use the U as pointer
-f3ac : 4f               					clra
-f3ad : 5f               					clrb
-f3ae : ed43             					std		WrRepeat,u 			; set to 0 by default
-                        					
-                        					;------- extract the ' ' only -------------------
-f3b0 : 1704a5           					lbsr	sCMDextr
-f3b3 : c120             					cmpb	#' '
-f3b5 : 262c             					bne		_sCMDwrInvalid
-                        
-                        					;------- extract 'waddr' --------------------
-f3b7 : 17049e           					lbsr	sCMDextr
-f3ba : c10d             					cmpb	#CR
-AS09 Assembler for M6809 [1.42].                                     Page    7
---------------------------------- merge.a09 ----------------------------------
-
-f3bc : 2725             					beq		_sCMDwrInvalid		; CR shall come later
-f3be : c120             					cmpb	#' '
-f3c0 : 2621             					bne		_sCMDwrInvalid		
-f3c2 : 8ce000           					cmpx	#ROM_ORG			; avoid write in ROM
-f3c5 : 241c             					bhs		_sCMDwrInvalid
-f3c7 : af40             					stx		WrAddr,u 			; save read param 1
-                        					
-                        					;------- extract 'wdata' --------------------
-f3c9 : 17048c           					lbsr	sCMDextr
-f3cc : 1e10             					exg		x,d
-f3ce : e742             					stb		WrData,u 			; save read param 2
-f3d0 : 1e10             					exg		x,d
-f3d2 : c10d             					cmpb	#CR					; check if param ended
-f3d4 : 271a             					beq		_sCMDwr1
-f3d6 : c120             					cmpb	#' '				; check if a repeat param follows
-f3d8 : 2609             					bne		_sCMDwrInvalid				
-                        					
-                        					;------- extract the optional 'repeat' ----------
-f3da : 17047b           					lbsr	sCMDextr
-f3dd : af43             					stx		WrRepeat,u 			; save read param 3
-f3df : c10d             					cmpb	#CR
-f3e1 : 270d             					beq		_sCMDwr1				
-                        				
-f3e3 : 17046b           _sCMDwrInvalid		lbsr	sCMDinvalid
-f3e6 : 160048           					lbra	_sCMDwrdone
-                        				
-f3e9 : 0d777269746500   STR_CMD_wr			db		CR,"write",0
-f3f0 : 8ef3e9           _sCMDwr1			ldx		#STR_CMD_wr
-f3f3 : 1704a6           					lbsr	sPUTSTR
-f3f6 : c60d             _sCMDexe_wr1     	ldb		#CR					; CR when begin with ad
-f3f8 : 17068e           					lbsr	sMON_PORT_WR
-f3fb : ec40             					ldd		WrAddr,u
-f3fd : 3406             					pshs	d
-f3ff : 1705f9           					lbsr	HEXWORD2MONPORT
-f402 : 3262             					leas	2,s
-f404 : c620             _sCMDexe_wr2		ldb		#' '
-f406 : 170680           					lbsr	sMON_PORT_WR
-f409 : e642             					ldb		WrData,u
-f40b : 3406             					pshs	d
-f40d : 170620           					lbsr	HEXBYTE2MONPORT
-f410 : 3262             					leas	2,s
-f412 : a642             					lda		WrData,u
-f414 : a7d800           					sta		[WrAddr,u]			; perform the write
-f417 : ec43             					ldd		WrRepeat,u
-f419 : 10830000         					cmpd	#0
-f41d : 2712             					beq		_sCMDwrdone
-f41f : 830001           					subd	#1
-f422 : ed43             					std		WrRepeat,u
-f424 : ec40             					ldd		WrAddr,u
-f426 : c30001           					addd	#1
-f429 : ed40             					std		WrAddr,u
-f42b : c41f             					andb	#$1f
-f42d : 27c7             					beq		_sCMDexe_wr1		; write addr at begin
-f42f : 20d3             					bra		_sCMDexe_wr2
-                        	
-f431 : 3262             _sCMDwrdone			leas	2,s					; free 16-bit param 3
-f433 : 3261             					leas	1,s					; free 8-bit param 2
-f435 : 3262             					leas	2,s					; free 16-bit param 1
-f437 : 3540             					puls	u
-f439 : 39               					rts							; exit
-                        
-                        ;----------------------------------------------------;
-AS09 Assembler for M6809 [1.42].                                     Page    8
---------------------------------- merge.a09 ----------------------------------
-
-f43a : 0d636f70792000   STR_EW1				db		CR,"copy ",0
-f441 : 20627974652873.. STR_EW2				db		" byte(s) from ",0
-f450 : 20746f2000       STR_EW3				db		" to ",0
-f455 : 2c20706c656173.. STR_EW4				db		", please wait ...",0
-f467 : 0d656570726f6d.. STR_EWdone			db		CR,"eeprom writing done, ",0
-f47e : 436865636b5375.. STR_EW_CS			db		"CheckSum16: ",0
-f48b : 3440             sCMDew				pshs	u					; save register(s)
-                        					;------- extract ' ' --------------------
-f48d : 1703c8           					lbsr	sCMDextr
-f490 : c120             					cmpb	#' '
-f492 : 262f             					bne		_sCMDewInvalid0					
-                        					
-                        					;------- extract 'src' until ' ' ----------------
-f494 : 1703c1           					lbsr	sCMDextr
-f497 : 3410             					pshs	x					; push WriteEEP param 1 (src)
-f499 : c120             					cmpb	#' '
-f49b : 2624             					bne		_sCMDewInvalid1					
-                        					
-                        					;------- extract 'dst'until' ' ------------------
-f49d : 1703b8           					lbsr	sCMDextr
-f4a0 : 3410             					pshs	x 					; push WriteEEP param 2 (dst)
-f4a2 : c120             					cmpb	#' '
-f4a4 : 2619             					bne		_sCMDewInvalid2								
-                        					
-                        					;------- extract 'len'until' ' ------------------
-f4a6 : 1703af           					lbsr	sCMDextr
-f4a9 : 3410             					pshs	x 					; push WriteEEP param 3 (len)
-f4ab : 8e0000           					ldx		#0					; no protection param by default
-f4ae : c10d             					cmpb	#CR
-f4b0 : 2717             					beq		_sCMDew1			; no protection param
-f4b2 : c120             					cmpb	#' '
-f4b4 : 2607             					bne		_sCMDewInvalid3					
-                        					
-                        					;------- extract 'protection'until'CR' ----------
-f4b6 : 17039f           					lbsr	sCMDextr					
-f4b9 : c10d             					cmpb	#CR
-f4bb : 270c             					beq		_sCMDew1				; branch when OK, otherwise free
-f4bd : 3262             _sCMDewInvalid3		leas	2,s					; free WriteEEP param 3
-f4bf : 3262             _sCMDewInvalid2		leas	2,s					; free WriteEEP param 2
-f4c1 : 3262             _sCMDewInvalid1		leas	2,s					; free WriteEEP param 1
-f4c3 : 17038b           _sCMDewInvalid0		lbsr	sCMDinvalid
-f4c6 : 16005e           					lbra	_sCMDewdone
-                        
-f4c9 : 3410             _sCMDew1			pshs	x 					; WriteEEP param 4 (protection)
-f4cb : 3360             					leau	0,s					; use U as parameter pointer
-f4cd : 8ef43a           					ldx		#STR_EW1
-f4d0 : 1703c9           					lbsr	sPUTSTR
-f4d3 : ec42             					ldd		2,u					; print param 3 (length in byte)
-f4d5 : 3406             					pshs	d
-f4d7 : 170521           					lbsr	HEXWORD2MONPORT
-f4da : 3262             					leas	2,s
-f4dc : 8ef441           					ldx		#STR_EW2
-f4df : 1703ba           					lbsr	sPUTSTR
-f4e2 : ec46             					ldd		6,u					; print param 2 (source)
-f4e4 : 3406             					pshs	d
-f4e6 : 170512           					lbsr	HEXWORD2MONPORT
-f4e9 : 3262             					leas	2,s
-f4eb : 8ef450           					ldx		#STR_EW3
-f4ee : 1703ab           					lbsr	sPUTSTR
-f4f1 : ec44             					ldd		4,u					; print param 1 (destination)
-f4f3 : 3406             					pshs	d
-f4f5 : 170503           					lbsr	HEXWORD2MONPORT
-AS09 Assembler for M6809 [1.42].                                     Page    9
---------------------------------- merge.a09 ----------------------------------
-
-f4f8 : 3262             					leas	2,s
-f4fa : 8ef455           					ldx		#STR_EW4
-f4fd : 17039c           					lbsr	sPUTSTR
-                        					
-f500 : 1703a3           					lbsr	WriteEEP
-f503 : 8ef467           					ldx		#STR_EWdone
-f506 : 170393           					lbsr	sPUTSTR
-                        					
-f509 : 8ef47e           					ldx		#STR_EW_CS
-f50c : 17038d           					lbsr	sPUTSTR
-f50f : ec44             					ldd		4,u					; Checksum calculated in ROM. Take W
-f511 : 3406             					pshs	d					; push as 1st arg (CheckSum16 begin ad
-f513 : e342             					addd	2,u					; add WriteEEP length in byte
-f515 : 3406             					pshs	d					; push as 2nd arg (CheckSum16 end addr
-f517 : 4f               					clra						; initial CheckSum16 value shall be 0
-f518 : 5f               					clrb
-f519 : 3406             					pshs	d					; push as 3rd arg
-f51b : 1704a9           					lbsr	getCheckSum16
-f51e : 3266             					leas	6,s					; free the 3 args					
-f520 : 3406             					pshs	d
-f522 : 1704d6           					lbsr	HEXWORD2MONPORT
-f525 : 3262             					leas	2,s
-f527 : 3268             _sCMDewdone			leas	8,s					; free the WriteEEP 4 param
-f529 : 35c0             					puls	u,pc  				; restore u and return				
-                        						
-                        ;----------------------------------------------------;
-f52b : 0d73656e64206e.. STR_CMD_LD			db		CR,"send now the SRec data, Offset=",
-f54c : 20627974652873.. STR_CMD_LD2			db		" byte(s) @ addr:",0
-f55d : 72656365707469.. STR_CMD_LD3			db		"reception completed",CR,0
-f572 : 20636865636b73.. STR_CMD_LD4			db		" checksum error!",0
-0000 =                  ByteCount			equ		0					; uchar byte count index
-0001 =                  SRecCheckSum		equ		1					; uchar SRecCheckSum index
-0002 =                  Offset				equ		2					; uint Offset index
-0004 =                  NewAddr				equ		4					; uint new address
-f583 : 3440             sCMDld				pshs	u
-f585 : 327e             					leas	-2,s				; allocate 16-bit Offset
-f587 : 327e             					leas	-2,s				; allocate 16-bit Offset
-f589 : 327f             					leas	-1,s				; allocate 8-bit SRecCheckSum
-f58b : 327f             					leas	-1,s				; allocate 8-bit ByteCount
-f58d : 33e4             					leau	,s					; use the U as pointer
-f58f : 4f               					clra
-f590 : 5f               					clrb
-f591 : ed42             					std		Offset,u 			; set to 0 by default
-                        					
-                        					;------- extract 'CR' or optional ' ''offset' ---
-f593 : 1702c2           					lbsr	sCMDextr
-f596 : c10d             					cmpb	#CR					; no offset
-f598 : 270b             					beq		_sCMDld00
-f59a : c120             					cmpb	#' '
-f59c : 261a             					bne		_sCMDldInvalid		; with offset data
-                        					
-                        					;------- extract optional 'offset' --------------
-f59e : 1702b7           					lbsr	sCMDextr
-f5a1 : c10d             					cmpb	#CR
-f5a3 : 2613             					bne		_sCMDldInvalid					
-                        					
-f5a5 : af42             _sCMDld00			stx		Offset,u			; save the offset data
-f5a7 : 8ef52b           					ldx		#STR_CMD_LD
-f5aa : 1702ef           					lbsr	sPUTSTR
-f5ad : ec42             					ldd		Offset,u
-f5af : 3406             					pshs	d
-f5b1 : 170447           					lbsr	HEXWORD2MONPORT
-AS09 Assembler for M6809 [1.42].                                     Page   10
---------------------------------- merge.a09 ----------------------------------
-
-f5b4 : 3262             					leas	2,s
-f5b6 : 2006             					bra		_sCMDld0
-f5b8 : 170296           _sCMDldInvalid		lbsr	sCMDinvalid
-f5bb : 160082           					lbra	_sCMDlddone
-                        					;------- seek for 'S1' --------------------
-f5be : 17fcf2           _sCMDld0			lbsr	sRbRead 			; read a byte
-f5c1 : 5d               					tstb
-f5c2 : 27fa             					beq		_sCMDld0
-f5c4 : 8153             					cmpa	#'S'
-f5c6 : 26f6             					bne		_sCMDld0
-f5c8 : 17fce8           _sCMDld01			lbsr	sRbRead 			; read a byte
-f5cb : 5d               					tstb
-f5cc : 27fa             					beq		_sCMDld01
-f5ce : 8131             					cmpa	#'1'
-f5d0 : 266e             					bne		_sCMDlddone 		; the last line does not conta
-f5d2 : 6f41             					clr		SRecCheckSum,u		; SRecCheckSum = 0
-                        					
-f5d4 : 8602             					lda		#2					; read byte count
-f5d6 : 1702a3           					lbsr	sExtrNByte
-f5d9 : 3404             					pshs	b
-f5db : eb41             					addb	SRecCheckSum,u		; SRecCheckSum +=  bytecount
-f5dd : e741             					stb		SRecCheckSum,u
-f5df : 3504             					puls	b
-f5e1 : c003             					subb	#3					; 3 byte already read
-f5e3 : e740             					stb		ByteCount,u
-f5e5 : c60d             					ldb		#CR
-f5e7 : 17049f           					lbsr	sMON_PORT_WR
-f5ea : e640             					ldb		ByteCount,u
-f5ec : 3406             					pshs	d
-f5ee : 17043f           					lbsr	HEXBYTE2MONPORT
-f5f1 : 3262             					leas	2,s
-f5f3 : 8ef54c           					ldx		#STR_CMD_LD2
-f5f6 : 1702a3           					lbsr	sPUTSTR
-                        					
-f5f9 : 8604             					lda		#4  				; read addr
-f5fb : 17027e           					lbsr	sExtrNByte
-f5fe : ed44             					std	    NewAddr,u			; save addr
-f600 : ab41             					adda	SRecCheckSum,u		; SRecCheckSum +=  addr hi
-f602 : a741             					sta		SRecCheckSum,u
-f604 : eb41             					addb	SRecCheckSum,u		; SRecCheckSum +=  addr lo
-f606 : e741             					stb		SRecCheckSum,u	
-f608 : ec44             					ldd	    NewAddr,u			; addr -= offset
-f60a : a342             					subd	Offset,u
-f60c : ed44             					std	    NewAddr,u			; save new addr
-f60e : 3406             					pshs	d
-f610 : 1703e8           					lbsr	HEXWORD2MONPORT
-f613 : 3262             					leas	2,s
-                        
-f615 : 8602             _sCMDld1			lda		#2					; read data
-f617 : 170262           					lbsr	sExtrNByte
-f61a : 3404             					pshs	b
-f61c : eb41             					addb	SRecCheckSum,u		; SRecCheckSum +=  data
-f61e : e741             					stb		SRecCheckSum,u
-f620 : 3504             					puls	b
-f622 : ae44             					ldx	    NewAddr,u			; get new addr
-f624 : e780             					stb     ,x+ 				; write to dst addr and inc
-f626 : af44             					stx	    NewAddr,u			; save new addr
-f628 : 6a40             					dec		ByteCount,u
-f62a : 26e9             					bne		_sCMDld1
-                        						
-f62c : 8602             					lda		#2					; read checksum
-f62e : 17024b           					lbsr	sExtrNByte
-AS09 Assembler for M6809 [1.42].                                     Page   11
---------------------------------- merge.a09 ----------------------------------
-
-f631 : e841             					eorb	SRecCheckSum,u 		; checksum xor with sum sho
-f633 : c1ff             					cmpb	#$ff
-f635 : 2706             					beq		_sCMDld2
-f637 : 8ef572           					ldx		#STR_CMD_LD4
-f63a : 17025f           					lbsr	sPUTSTR
-f63d : 16ff7e           _sCMDld2			lbra	_sCMDld0
-f640 : c60d             _sCMDlddone      	ldb		#CR
-f642 : 170444           					lbsr	sMON_PORT_WR
-f645 : 8ef55d           					ldx		#STR_CMD_LD3
-f648 : 170251           					lbsr	sPUTSTR
-f64b : 3261             					leas	1,s					; free 8-bit
-f64d : 3261             					leas	1,s					; free 8-bit
-f64f : 3262             					leas	2,s					; free 16-bit
-f651 : 3262             					leas	2,s					; free 16-bit
-f653 : 3540             					puls	u
-f655 : 39               					rts							; exit
-                        
-                        ;----------------------------------------------------;
-f656 : 0d676f20616464.. STR_GO				db		CR,"go address ",0
-f663 :                  sCMDgo				;------- extract ' ' --------------------
-f663 : 1701f2           					lbsr	sCMDextr
-f666 : c120             					cmpb	#' '
-f668 : 2607             					bne		_sCMDgoInvalid
-                        					
-                        					;------- extract 'addr' with 'CR' ---------------
-f66a : 1701eb           					lbsr	sCMDextr
-f66d : c10d             					cmpb	#CR								
-f66f : 2705             					beq		_sCMDgo0			; missing addr param	
-f671 : 1701dd           _sCMDgoInvalid		lbsr	sCMDinvalid
-f674 : 201d             					bra		_sCMDgodone
-f676 : 3410             _sCMDgo0         	pshs	x					; save go addr
-f678 : 8ef656           					ldx		#STR_GO
-f67b : 17021e           					lbsr	sPUTSTR					
-f67e : ec60             					ldd		0,s					; get go addr
-f680 : 3406             					pshs	d
-f682 : 170376           					lbsr	HEXWORD2MONPORT
-f685 : 3262             					leas	2,s
-f687 : ccffff           					ldd		#$ffff
-f68a : 830001           _sCMDgo1			subd	#1
-f68d : 26fb             					bne		_sCMDgo1			; wait until MONPORT output proce
-f68f : 3510             					puls	x
-f691 : ad84             					jsr     ,x      			; execute @ addr
-f693 : 39               _sCMDgodone			rts							; exit
-                        
-                        ;----------------------------------------------------;
-f694 : 0d73746f702070.. STR_ST				db		CR,"stop process ",0
-f6a3 :                  sCMDStp				;------- extract ' ' --------------------
-f6a3 : 1701b2           					lbsr	sCMDextr
-f6a6 : c120             					cmpb	#' '
-f6a8 : 2607             					bne		_sCMDstpInvalid
-                        					
-                        					;------- extract 'process ID' with 'CR' ---------
-f6aa : 1701ab           					lbsr	sCMDextr
-f6ad : c10d             					cmpb	#CR								
-f6af : 2705             					beq		_sCMDstp0			; missing ID param	
-f6b1 : 17019d           _sCMDstpInvalid		lbsr	sCMDinvalid
-f6b4 : 201d             					bra		_sCMDstpdone
-f6b6 : 3410             _sCMDstp0         	pshs	x					; save process ID
-f6b8 : 8ef694           					ldx		#STR_ST
-f6bb : 1701de           					lbsr	sPUTSTR					
-f6be : ec60             					ldd		0,s					; get process ID
-f6c0 : 3406             					pshs	d
-AS09 Assembler for M6809 [1.42].                                     Page   12
---------------------------------- merge.a09 ----------------------------------
-
-f6c2 : 17036b           					lbsr	HEXBYTE2MONPORT
-f6c5 : 3262             					leas	2,s
-f6c7 : 3506             					puls	d
-f6c9 : c120             					cmpb	#BASIC_PROCESS_ID
-f6cb : 2606             					bne		_sCMDstpdone
-f6cd : 7f7ff0           					clr		BasicCallBack		; void the next callback addr
-f6d0 : 7f7ff1           					clr		BasicCallBack+1
-f6d3 : 39               _sCMDstpdone		rts							; exit
-                        
-                        ;----------------------------------------------------;
-f6d4 : 0d736574206272.. STR_BP				db		CR,"set breakkpoint address ",0
-f6ee : 0d627265616b6b.. STR_BP1				db		CR,"breakkpoint existing! ",0
-f706 :                  sCMDbp				;------- extract ' ' --------------------
-f706 : 17014f           					lbsr	sCMDextr
-f709 : c120             					cmpb	#' '
-f70b : 2615             					bne		_sCMDbpInvalid
-                        					
-                        					;------- extract addr param with 'CR ' ----------
-f70d : 170148           					lbsr	sCMDextr
-f710 : c10d             					cmpb	#CR
-f712 : 260e             					bne		_sCMDbpInvalid
-                        					
-f714 : 8c0000           					cmpx	#RAM_ORG			; validate address within RAM
-f717 : 2509             					blo		_sCMDbpInvalid
-f719 : 8c7fff           					cmpx	#RAM_END
-f71c : 2204             					bhi		_sCMDbpInvalid
-                        					
-f71e : 3410             					pshs	x 					; save bp addr
-f720 : 2005             					bra		_sCMDbp1
-f722 : 17012c           _sCMDbpInvalid		lbsr	sCMDinvalid
-f725 : 2036             					bra		_sCMDbpdone
-f727 : fc7fbd           _sCMDbp1         	ldd		BrkPtAddr			; verify if breakpo
-f72a : 10830000         					cmpd	#BrkPtOff
-f72e : 270e             					beq		_sCMDbp2			; breakpoint not existing
-f730 : 10830001         					cmpd	#BrkPtTriggered
-f734 : 2708             					beq		_sCMDbp2			; breakpoint can be set again				
-f736 : 8ef6ee           					ldx		#STR_BP1
-f739 : 170160           					lbsr	sPUTSTR
-f73c : 201f             					bra		_sCMDbpdone
-f73e : 8ef6d4           _sCMDbp2			ldx		#STR_BP
-f741 : 170158           					lbsr	sPUTSTR
-f744 : 3506             					puls	d					; restore bp addr
-f746 : fd7fbd           					std		BrkPtAddr			; save addr
-f749 : 3406             					pshs	d
-f74b : 1702ad           					lbsr	HEXWORD2MONPORT
-f74e : 3262             					leas	2,s
-f750 : a69f7fbd         					lda		[BrkPtAddr]			; save instruction
-f754 : b77fbf           					sta		BrkPtInst
-f757 : 863f             					lda		#$3f				;swi instruction
-f759 : a79f7fbd         					sta		[BrkPtAddr]			;replace by swi
-f75d : 39               _sCMDbpdone			rts							; exit
-                        
-                        ;----------------------------------------------------;
-f75e : 0d717569742064.. STR_QBP				db		CR,"quit debugging mode",0
-f773 : 0d6e6f7420696e.. STR_QBP1			db		CR,"not in debugging mode",0
-f78a : fc7fbd           sCMDqbp	    	    ldd		BrkPtAddr			; verify if breakpoi
-f78d : 10830000         					cmpd	#BrkPtOff			; Off when not in debug mode
-f791 : 271f             					beq		_sCMDqbp1	
-f793 : 3406             					pshs	d
-f795 : 8ef75e           					ldx		#STR_QBP
-f798 : 170101           					lbsr	sPUTSTR
-f79b : 3506             					puls	d
-AS09 Assembler for M6809 [1.42].                                     Page   13
---------------------------------- merge.a09 ----------------------------------
-
-f79d : 10830001         					cmpd	#BrkPtTriggered		; was triggered
-f7a1 : 2707             					beq		_sCMDqbp0
-f7a3 : b67fbf           					lda		BrkPtInst
-f7a6 : a79f7fbd         					sta		[BrkPtAddr]			; replace initial instruction 
-f7aa : cc0000           _sCMDqbp0			ldd		#BrkPtOff	
-f7ad : fd7fbd           					std		BrkPtAddr			; place in off state
-f7b0 : 2006             					bra		_sCMDqbpdone				
-f7b2 : 8ef773           _sCMDqbp1			ldx		#STR_QBP1
-f7b5 : 1700e4           					lbsr	sPUTSTR
-f7b8 : 39               _sCMDqbpdone		rts							; exit
+                        ;}		
                         
                         
-                        ;----------------------------------------------------;
-f7b9 : 0d73656e64206e.. STR_CMD_LDBAS		db		CR,"send now the BAS file",CR,0
-f7d1 : 454e440d00       STR_CMD_LDBASEND	db		"END",CR,0
-f7d6 : 17fad4           sCMDldbas			lbsr	sRbReadCmd
-f7d9 : 5d               					tstb
-f7da : 10270073         					lbeq	sCMDinvalid				
-f7de : 810d             					cmpa	#CR
-f7e0 : 1026006d         					lbne	sCMDinvalid  		; not CR, invalid CMD
-f7e4 : 8ef7b9           					ldx		#STR_CMD_LDBAS
-f7e7 : 1700b2           					lbsr	sPUTSTR
-                        										
-                        					;------- read until 'END' --------------------
-f7ea : 8ef7d1           _sCMDldbas0 		ldx		#STR_CMD_LDBASEND
-f7ed : 17fac3           _sCMDldbas1			lbsr	sRbRead 			; read a byte					
-f7f0 : 5d               					tstb
-f7f1 : 27fa             					beq		_sCMDldbas1
-f7f3 : 810a             					cmpa    #10
-f7f5 : 27f6             					beq		_sCMDldbas1			; remove LF
-f7f7 : 3412             					pshs	a,x
-f7f9 : 1f89             					tfr		a,b
-f7fb : 170298           					lbsr	sAPL_KeyboardData
-f7fe : 170295           _sCMDldbas2			lbsr	BASICprocess		; BASIC process call
-f801 : 170292           					lbsr    isKeyboardData		; check if the data is pr
-f804 : 5d               					tstb
-f805 : 26f7             					bne		_sCMDldbas2			; loop until the data is compl
-f807 : 3512             					puls	x,a
-f809 : a180             					cmpa	,x+
-f80b : 26dd             					bne		_sCMDldbas0
-f80d : 1f10             					tfr		x,d
-f80f : 83f7d1           					subd	#STR_CMD_LDBASEND
-f812 : 10830004         					cmpd	#4
-f816 : 25d5             					blo		_sCMDldbas1
-f818 : 39               					rts
-                        
-                        ;----------------------------------------------------;
-f819 :                  sCMDbas				;------- extract ' ' ----------------------
-f819 : 17003c           					lbsr	sCMDextr
-f81c : c120             					cmpb	#' '
-f81e : 2631             					bne		sCMDinvalid
-                        					
-                        					;------- extract 'BASIC code' with 'CR' ---------
-f820 : 17fa90           _sCMDbas0			lbsr	sRbRead
-f823 : 5d               					tstb
-f824 : 2716             					beq		_sCMDbasdone
-f826 : 3402             					pshs    a
-f828 : 1f89             					tfr		a,b
-f82a : 170269           					lbsr	sAPL_KeyboardData
-f82d : 170266           _sCMDbas1			lbsr	BASICprocess		; BASIC process call
-f830 : 170263           					lbsr    isKeyboardData		; check if the data is pr
-f833 : 5d               					tstb
-AS09 Assembler for M6809 [1.42].                                     Page   14
---------------------------------- merge.a09 ----------------------------------
-
-f834 : 26f7             					bne		_sCMDbas1			; loop until the data is complet
-f836 : 3502             					puls    a
-f838 : 810d             					cmpa    #CR					; CR ends the command
-f83a : 26e4             					bne		_sCMDbas0
-f83c : 39               _sCMDbasdone		rts	
-                        
-                        ;----------------------------------------------------;
-f83d : 0d696e76616c69.. STR_CMDinvalid		db		CR,"invalid command!!",CR,0
-f851 : 8ef83d           sCMDinvalid			ldx		#STR_CMDinvalid
-f854 : 170045           					lbsr	sPUTSTR
-f857 : 39               					rts
-                        ;}
-                        
-                        ;----------------------------------------------------;
-f858 :                  sCMDextr ;{
-                        ;---------------------------------------------------;
-                        ; extract text command (converted in hex) until a ' ' 
-                        ; param: 	none
-                        ; return: 	cmd value -> X, end condition -> B (NULL wh
-                        ;---------------------------------------------------;
-f858 : 8e0000           					ldx		#0					; clear
-f85b : 17fa4f           _sCMDextr0			lbsr	sRbReadCmd 			; read a byte
-f85e : 5d               					tstb
-f85f : 271a             					beq		_sCMDextrEnd			; RB empty, B is NULL
-f861 : 1f89             					tfr		a,b					; B contains the end condition
-f863 : 8120             					cmpa	#' '				; end value?
-f865 : 2714             					beq		_sCMDextrEnd  		; return value already in B
-f867 : 810d             					cmpa	#CR					; or CR ends ?
-f869 : 2710             					beq		_sCMDextrEnd  		; not expected
-f86b : 170208           					lbsr	sTEXT2HEX			; convert
-f86e : 3402             					pshs	a					; save new value on stack
-f870 : 1f10             					tfr		x,d
-f872 : 17016e           					lbsr	sWLSL4bit
-f875 : ebe0             					addb	,s+					; add the new value and free 8-bit s
-f877 : 1f01             					tfr		d,x
-f879 : 20e0             					bra		_sCMDextr0
-f87b : 39               _sCMDextrEnd     	rts
-                        ;}
-                        ;----------------------------------------------------;
-f87c :                  sExtrNByte ;{
-                        ;---------------------------------------------------
-                        ; asm call extract (text to hex) 
-                        ; param: 	A -> n byte to extract
-                        ; return:	out value -> D		
-                        ;---------------------------------------------------
-f87c : 3402             					pshs	a					; contains the count
-f87e : 8e0000           					ldx		#0					; clear
-f881 : 17fa2f           _sExtrNByte0		lbsr	sRbRead				; read a byte
-f884 : 5d               					tstb
-f885 : 27fa             					beq     _sExtrNByte0 		; loop until RB no more em
-f887 : 1701ec           					lbsr	sTEXT2HEX			; convert
-f88a : 3402             					pshs	a					; save
-f88c : 1f10             					tfr		x,d
-f88e : 170152           					lbsr	sWLSL4bit
-f891 : ebe0             					addb	,s+					; free 8-bit stack
-f893 : 1f01             					tfr		d,x
-f895 : 6ae4             					dec		,s					; decrease the count					
-f897 : 26e8             					bne		_sExtrNByte0
-f899 : 3261             _sExtrEnd        	leas	1,s					; puls, free end param
-f89b : 39               					rts
-                        	;}
-                        ;}
-AS09 Assembler for M6809 [1.42].                                     Page   15
---------------------------------- merge.a09 ----------------------------------
-
-                        
-                        ;----------------------------------------------------;
-                        ; asm call send string on debug port
-                        ; param: 	X -> pointer
-                        ; return:	none
-                        ;----------------------------------------------------;
-f89c : e680             sPUTSTR        		ldb		,x+
-f89e : 2705             					beq		_putstrDone 		; string ends with NULL
-f8a0 : 1701e6           					lbsr	sMON_PORT_WR
-f8a3 : 20f7             					bra		sPUTSTR
-f8a5 : 39               _putstrDone	  		rts
-                        ;}
-                        
-                        
-                        
-                        ;{ ---------------------------------------------------
-                        					code
-                        					
-                        ;----------------------------------------------------;
-                        ; write to EEPROM from RAM
-                        ; param: 			0,s -> return addr
-                        ;			4th arg:2,s -> protection 	-> 0,u
-                        ;			3rd arg:4,s -> len			-> 2,u
-                        ;			2nd arg:6,s -> dst 			-> 4,u
-                        ;			1st arg:8,s -> src 			-> 6,u
-                        ; return:	CheckSum16 value -> D
-                        ;----------------------------------------------------;
-f8a6 : 3470             WriteEEP			pshs	u,y,x				; save used pointers (+6 byte
-f8a8 : 3368             					leau	8,s					; set 4th arg to 0,u (8 bytes totall
-                        										
-f8aa : ec40             					ldd		0,u					; get the protection param					
-f8ac : 10830000         					cmpd	#0					; 1 is the XICOR protection
-f8b0 : 2702             					beq		_WriteEEP1
-f8b2 : 8d32             					bsr		DISAXICORWP					
-                        				
-f8b4 : 10ae44           _WriteEEP1			ldy		4,u					;get the params (X = src, Y 
-f8b7 : ae46             					ldx		6,u	
-f8b9 : ec42             					ldd		2,u					; get length value
-f8bb : 3406             					pshs	d					; create a length counter variable to 
-                        					
-f8bd : a680             _WriteEEP2			lda		,x+
-f8bf : a1a4             					cmpa	,y
-f8c1 : 270a             					beq		_no_change
-f8c3 : a7a4             					sta		,y
-f8c5 : cc0bb8           					ldd		#3000 				; delay 10ms @ 1.5MHz -> 15000cycl
-f8c8 : 830001           _WriteEEP3			subd	#1			
-f8cb : 26fb             					bne		_WriteEEP3 			; eeprom 10 ms write delay loo
-f8cd : 3121             _no_change			leay	1,y					; inc the pointer			
-f8cf : ec60             					ldd		0,s					; dec length counter variable
-f8d1 : 830001           					subd	#1
-f8d4 : ed60             					std		0,s
-f8d6 : 26e5             					bne		_WriteEEP2
-f8d8 : 3262             					leas	2,s					; free the length counter
-                        					
-f8da : ec40             					ldd		0,u					; get the protection param
-f8dc : 10830000         					cmpd	#0					; 1 is the XICOR protection
-f8e0 : 2702             					beq		_WriteEEP5
-f8e2 : 8d32             					bsr		ENAXICORWP				
-f8e4 : 35f0             _WriteEEP5			puls	x,y,u,pc			; restore used registers
-                        
-                        ;----------------------------------------------------;
-                        ; asm call remove XICOR 28C64 eeprom write protection
-AS09 Assembler for M6809 [1.42].                                     Page   16
---------------------------------- merge.a09 ----------------------------------
-
-                        ; param:  none
-                        ; return: none
-                        ;----------------------------------------------------;
-f8e6 : 3411             DISAXICORWP			pshs	ccr,x				; save ccr (for the disabl
-f8e8 : 1a50             					orcc	#%01010000			; disable interrupts				
-f8ea : 8e9555           					ldx 	#$1555+CS0  		;$1555 + base addr 
-f8ed : 86aa             					lda		#$aa
-f8ef : a784             					sta		,x
-f8f1 : 8e8aaa           					ldx 	#$0aaa+CS0
-f8f4 : 8655             					lda		#$55
-f8f6 : a784             					sta		,x
-f8f8 : 8e9555           					ldx 	#$1555+CS0
-f8fb : 8680             					lda		#$80
-f8fd : a784             					sta		,x
-f8ff : 8e9555           					ldx 	#$1555+CS0
-f902 : 86aa             					lda		#$aa
-f904 : a784             					sta		,x
-f906 : 8e8aaa           					ldx 	#$0aaa+CS0
-f909 : 8655             					lda		#$55
-f90b : a784             					sta		,x
-f90d : 8e9555           					ldx 	#$1555+CS0
-f910 : 8620             					lda		#$20
-f912 : a784             					sta		,x				
-f914 : 3591             					puls	x,ccr,pc				; restore registers
-                        				
-                        ;----------------------------------------------------;
-                        ; asm call enable XICOR 28C64 eeprom write protection 
-                        ; param:  none
-                        ; return: none
-                        ;----------------------------------------------------;
-f916 : 3411             ENAXICORWP			pshs	ccr,x				; save ccr (for the disabli
-f918 : 1a50             					orcc	#%01010000			; disable interrupts				
-f91a : f68000           					ldb		CS0					; get the byte
-f91d : 8e9555           					ldx 	#$1555+CS0  		;$1555 + base addr 
-f920 : 86aa             					lda		#$aa
-f922 : a784             					sta		,x
-f924 : 8e8aaa           					ldx 	#$0aaa+CS0
-f927 : 8655             					lda		#$55
-f929 : a784             					sta		,x
-f92b : 8e9555           					ldx 	#$1555+CS0
-f92e : 86a0             					lda		#$a0
-f930 : a784             					sta		,x
-                        					; write the byte
-f932 : 8e8000           					ldx 	#CS0				; get the byte addr
-f935 : e784             					stb		,x
-f937 : cc0bb8           					ldd		#3000 				; delay 10ms @ 1.5MHz -> 15000cycl
-f93a : 830001           _ENAX_1				subd	#1				
-f93d : 26fb             					bne		_ENAX_1 			; eeprom 1 ms write delay loop
-f93f : 3591             					puls	x,ccr,pc			; restore registers
-                        
-                        ;----------------------------------------------------;
-                        ; asm call ROM integrity check
-                        ; param:  X -> CheckSum16 begin addr
-                        ; return: none
-                        ;----------------------------------------------------;
-f941 : 524f4d20766572.. ROMcheckSTR0		db		"ROM verified",0
-f94e : 0d436865636b53.. ROMcheckSTR1		db		13,"CheckSum16 ",0
-f95b : 20776173206361.. ROMcheckSTR2		db		" was calculated instead ",0
-f974 : 2c20524f4d2066.. ROMcheckSTR3		db		", ROM failure!",0
-f983 : 3410             sROMcheck			pshs	x					; push as 1st arg
-f985 : 4f               					clra						; set CheckSum16 ROM's end wrapped to a
-f986 : 5f               					clrb
-AS09 Assembler for M6809 [1.42].                                     Page   17
---------------------------------- merge.a09 ----------------------------------
-
-f987 : 3406             					pshs	d					; push as 2nd arg
-f989 : b3fff0           					subd	ROM_Integrity		; initial CheckSum16 is exclu
-f98c : 3406             					pshs	d					; push as 3rd arg			
-f98e : 170036           					lbsr	getCheckSum16
-f991 : 3266             					leas	6,s					; free the 3 args
-f993 : 10b3fff0         					cmpd	ROM_Integrity
-f997 : 2727             					beq		_sROMok
-f999 : 3406             					pshs	d					; param for HEXWORD2MONPORT							
-f99b : 8ef94e           					ldx		#ROMcheckSTR1
-f99e : 17fefb           					lbsr	sPUTSTR
-f9a1 : 170057           					lbsr	HEXWORD2MONPORT	
-f9a4 : 3262             					leas	2,s					; free the last push
-f9a6 : 8ef95b           					ldx		#ROMcheckSTR2
-f9a9 : 17fef0           					lbsr	sPUTSTR
-f9ac : fcfff0           					ldd		ROM_Integrity
-f9af : 3406             					pshs	d					; param for HEXWORD2MONPORT							
-f9b1 : 170047           					lbsr	HEXWORD2MONPORT
-f9b4 : 3262             					leas	2,s					; free the last push					
-f9b6 : 8ef974           					ldx		#ROMcheckSTR3		; failure
-f9b9 : 17fee0           					lbsr	sPUTSTR
-f9bc : 2008             					bra		sROMcheckdone		; to be removed		
-f9be : 20fe             _sROMerror			bra		_sROMerror
-f9c0 : 8ef941           _sROMok				ldx		#ROMcheckSTR0		; success
-f9c3 : 17fed6           					lbsr	sPUTSTR			
-f9c6 : 39               sROMcheckdone		rts
-                        
-                        ;----------------------------------------------------;
-                        ; calculate the 16-bit CheckSum of the ROM
-                        ; param: 			0,s -> return addr
-                        ;			3rd arg:2,s -> CS16InitialValue -> 0,u
-                        ;			2nd arg:4,s -> CS16EndAddr		-> 2,u
-                        ;			1st arg 6,s -> start addr 		-> 4,u
-                        ; return:	CheckSum16 value -> D
-                        ;----------------------------------------------------;
-f9c7 :                  getCheckSum16	;{	
-f9c7 : 3450             					pshs	u,x					; save used registers (+4 bytes on s
-f9c9 : 3366             					leau	6,s					; set arg1 to 0,u (4 bytes after the
-f9cb : ae44             					ldx		4,u					; get 3rd arg start addr
-f9cd : ec81             _getCheckSum160		ldd		,x++
-f9cf : e340             					addd	0,u  				; 16-bit checksum
-f9d1 : ed40             					std		0,u
-f9d3 : ac42             					cmpx	2,u 				; end
-f9d5 : 26f6             					bne		_getCheckSum160
-f9d7 : 35d0             					puls	x,u,pc				; restore used registers
-                        ;}
-                        
-                        ;----------------------------------------------------;
-                        ; asm call calculate the string length
-                        ; param: 	X -> pointer
-                        ; return:	length -> D
-                        ;----------------------------------------------------;
-f9d9 :                  sStrlen  ;{
-f9d9 : 5f               					clrb
-f9da : a680             _sstrlen1 			lda		,x+
-f9dc : 2704             					beq		_sstrlenDone 		; string ends with NULL
-f9de : 5c               					incb
-f9df : 20f9             					bra		_sstrlen1
-f9e1 : 4f               					clra
-f9e2 : 39               _sstrlenDone		rts
-                        ;}
-                        
-                        ;----------------------------------------------------;
-AS09 Assembler for M6809 [1.42].                                     Page   18
---------------------------------- merge.a09 ----------------------------------
-
-                        ; asm call shift left D 4-bit
-                        ; param: 	D -> value
-                        ; return:	out -> D
-                        ;----------------------------------------------------;
-f9e3 : 58               sWLSL4bit	       	lslb
-f9e4 : 49               					rola
-f9e5 : 58               					lslb
-f9e6 : 49               					rola
-f9e7 : 58               					lslb
-f9e8 : 49               					rola
-f9e9 : 58               					lslb
-f9ea : 49               					rola
-f9eb : 39               					rts
-                        
-                        ;----------------------------------------------------;
-                        ; send string on debug port
-                        ; param: 	2,s -> string pointer
-                        ; return:	none
-                        ;----------------------------------------------------;
-f9ec : 3410             PUTSTR	         	pshs	x				; +2 bytes on stack
-f9ee : ae64             					ldx		4,s
-f9f0 : e680             _putstr0			ldb		,x+
-f9f2 : 2705             					beq		_putstr1 		; string ends with NULL
-f9f4 : 170092           					lbsr	sMON_PORT_WR
-f9f7 : 20f7             					bra		_putstr0
-f9f9 : 3590             _putstr1			puls	x,pc
-                        
-                        ;----------------------------------------------------;
-                        ; send Word on debug port, displayed in HEX
-                        ; param: 	2,s -> 8-bit high byte
-                        ;			3,s -> 8-bit low byte
-                        ; return:	none, D is not preserved
-                        ;----------------------------------------------------;
-f9fb :                  HEXWORD2MONPORT		
-f9fb : 3440             HEXWORD2			pshs	u					; +2 bytes on stack
-f9fd : 3364             					leau	4,s					; fix arg1 pointer to 0,u	
-f9ff : c624             					ldb		#'$'
-fa01 : 170085           					lbsr	sMON_PORT_WR
-fa04 : e640             					ldb		0,u		  			; param high byte
-fa06 : 3406             					pshs	d
-fa08 : 17004b           					lbsr	DHEX2TEXT
-fa0b : 3262             					leas	2,s 
-fa0d : 3404             					pshs	b					; save low byte
-fa0f : 1f89             					tfr		a,b
-fa11 : f7d000           					stb		DEBUG_MON_PORT		; write high byte (write dir
-fa14 : 3504             					puls	b					; get low byte
-fa16 : f7d000           					stb		DEBUG_MON_PORT		; write low byte (write dire
-fa19 : e641             					ldb		1,u		  			; param low byte
-fa1b : 3406             					pshs	d
-fa1d : 170036           					lbsr	DHEX2TEXT
-fa20 : 3262             					leas	2,s 
-fa22 : 3404             					pshs	b					; save low byte
-fa24 : 1f89             					tfr		a,b
-fa26 : f7d000           					stb		DEBUG_MON_PORT		; write high byte (write dir
-fa29 : 3504             					puls	b					; get low byte
-fa2b : f7d000           					stb		DEBUG_MON_PORT		; write low byte (write dire
-fa2e : 35c0             					puls	u,pc
-                        ;}
-                        
-                        ;----------------------------------------------------;
-                        ; send Byte on debug port, displayed in HEX
-                        ; param: 	2,s -> xx
-AS09 Assembler for M6809 [1.42].                                     Page   19
---------------------------------- merge.a09 ----------------------------------
-
-                        ;			3,s -> 8-bit value
-                        ; return:	none, D is not preserved
-                        ;----------------------------------------------------;
-fa30 :                  HEXBYTE2MONPORT
-fa30 : 3440             HEXBYTE2			pshs	u
-fa32 : 3364             					leau	4,s					; fix arg1 pointer to 0,u		
-fa34 : c624             					ldb		#'$'
-fa36 : 170050           					lbsr	sMON_PORT_WR
-fa39 : e641             					ldb		1,u
-fa3b : 3406             					pshs	d
-fa3d : 170016           					lbsr	DHEX2TEXT
-fa40 : 3262             					leas	2,s 
-fa42 : 3404             					pshs	b
-fa44 : 1f89             					tfr		a,b
-fa46 : f7d000           					stb		DEBUG_MON_PORT			; write high nibble
-fa49 : 3504             					puls	b
-fa4b : f7d000           					stb		DEBUG_MON_PORT			; write low nibble
-fa4e : 35c0             					puls	u,pc
-                        
-                        ;----------------------------------------------------;
-                        ; send a byte on debug port
-                        ; param: 	2,s -> xx
-                        ;			3,s -> 8-bit value
-                        ; return:	none
-                        ;----------------------------------------------------;
-fa50 :                  BYTE2MONPORT
-fa50 : e663             BYTE2MON			ldb		3,s
-fa52 : 170034           					lbsr	sMON_PORT_WR
-fa55 : 39               					rts
-                        
-                        ;----------------------------------------------------;
-                        ; convert a byte to ascii hex value
-                        ; param: 	2,s -> xx
-                        ;			3,s -> 8-bit value
-                        ; return:	high nible -> A
-                        ;			low nibble -> B
-                        ;----------------------------------------------------;
-fa56 : a663             DHEX2TEXT	   		lda		3,s
-fa58 : 44               					lsra
-fa59 : 44               					lsra
-fa5a : 44               					lsra
-fa5b : 44               					lsra
-fa5c : 8d0b             					bsr		sHEX2TEXT
-fa5e : 1f89             					tfr		a,b
-fa60 : a663             					lda		3,s
-fa62 : 840f             					anda	#$f					;lower nible
-fa64 : 8d03             					bsr		sHEX2TEXT
-fa66 : 1e89             					exg		a,b
-fa68 : 39               					rts
-                        
-                        ;----------------------------------------------------;
-                        ; asm call hex to dec conversion
-                        ; param: 	A -> hex value
-                        ; return:	dec out -> A
-                        ;----------------------------------------------------;
-fa69 : 840f             sHEX2TEXT			anda	#$f					;lower nible
-fa6b : 8109             					cmpa	#9
-fa6d : 2204             					bhi     sHEX2TEXT_1
-fa6f : 8b30             					adda	#'0'				;for number
-fa71 : 2002             					bra     sHEX2TEXT_2
-fa73 : 8b37             sHEX2TEXT_1	    	adda	#$37				;for letter
-fa75 : 39               sHEX2TEXT_2			rts
-AS09 Assembler for M6809 [1.42].                                     Page   20
---------------------------------- merge.a09 ----------------------------------
-
-                        
-                        ;----------------------------------------------------;
-                        ; asm call dec to hex conversion
-                        ; param: 	A -> dec value
-                        ; return:	hex out -> A
-                        ;----------------------------------------------------;
-fa76 : 8139             sTEXT2HEX			cmpa	#'9'
-fa78 : 2204             					bhi     sTEXT2HEX_1
-fa7a : 840f             					anda	#$f					;for number
-fa7c : 200a             					bra     sTEXT2HEX_2
-fa7e : 8146             sTEXT2HEX_1      	cmpa	#'F'
-fa80 : 2204             					bhi     sTEXT2HEX_11
-fa82 : 8037             					suba	#$37				;for higher case letter
-fa84 : 2002             					bra     sTEXT2HEX_2
-fa86 : 8057             sTEXT2HEX_11     	suba	#$57				;for lower case letter
-fa88 : 39               sTEXT2HEX_2			rts
-                        ; coding convention:
-                        ; normal function paramters are passed by the stack: a
-                        ; the returned value is in D
-                        ; the registers X,Y,U need to be saved is modified wit
-                        ;
-                        ; special function lead by an 's' (e.g. sFUNCTION) is 
-                        ;
-                        ;{ ----------------------------------- Program Start -
-                        					code
-                        					
-0010 =                  MONITOR_PROCESS_ID	equ		$10
-0020 =                  BASIC_PROCESS_ID	equ		$20
-000d =                  CR        			equ  	$0d             	; carriage return
-                        
-                        ; configuration DEBUG_MON_PORT linked to UART
-00bf =                  ENABLE_MON_INT		equ		%10111111			; enable firq for mon
-d000 =                  DEBUG_MON_PORT		equ		UART				; link the debugMonPort t
-fa89 : 3404             sMON_PORT_WR		pshs	b
-fa8b : 17f5a8           					lbsr	waitSendDone
-fa8e : 17f5ad           					lbsr	waitCTS
-fa91 : 3504             					puls	b
-fa93 : f7d000           					stb		DEBUG_MON_PORT		; use the defined monitor po
-                        ; dummy routines
-fa96 :                  sAPL_KeyboardData
-fa96 :                  BASICprocess
-fa96 :                  isKeyboardData
-fa96 : 39               					rts						
-                        
-fa97 : 0d626172652072.. VERSION         	db      CR,"bare retro 6809 SBC versi
-fad6 : 68747470733a2f.. 					db		"https://github.com/akund/retro-6809-SBC",CR,
-fdc1 =                  CheckSum16			equ		$fdc1
-                        
-faff : 1a50             RESET           	orcc	#%01010000			; disable all inter
-fb01 : 10ce7fbd         					lds		#BSS_SEG_ORG				
-                        					
-fb05 : 17f4f8           					lbsr	UART_Init			; initialize the UART
-                        
-fb08 : 8efa97           					ldx		#VERSION			; version at boot up
-fb0b : 17fd8e           					lbsr	sPUTSTR
-                        					
-fb0e : 8ee000           					ldx		#ROM_ORG					
-fb11 : 17fe6f           					lbsr	sROMcheck			; check the ROM integrity					
-                        					
-                        					;---------- initialize monitor resources --------
-fb14 : 17f757           					lbsr	sMONITORSTART
-                        					
-AS09 Assembler for M6809 [1.42].                                     Page   21
---------------------------------- merge.a09 ----------------------------------
-
-fb17 : 327e             					leas	-2,s				; heart beat countdown @ 0,u
-fb19 : 3360             					leau	0,s					
-                        
-                        ;-------------------------------- main loop ----------
-fb1b : 17f7ba           loop				lbsr	sMonProcessCmd		; monitor process call
-                        					
-                        					; place your code here
-                        					
-fb1e : 20fb             					bra		loop
-                        
-                        
-                        ;Interrupt service routines
-                        ;{ ---------------------------------------------------
-fb20 : 3416             FIRQ	  			pshs	x,d
-fb22 : 8e7fc2           					ldx     #Rbuffer			; get buffer base addr				
-fb25 : b67fc0           					lda		RbHead				; head index value
-fb28 : 3086             					leax	a,x					; set X to the head pointer
-fb2a : 4c               					inca				
-fb2b : 8120             					cmpa	#RbSize
-fb2d : 2501             					blo		_firq1
-fb2f : 4f               					clra
-fb30 : b17fc1           _firq1			    cmpa	RbTail
-fb33 : 260b             					bne		_firq2				; stop filling before reaching the
-fb35 : a664             					lda		4,s					; modify the stacked CCR
-fb37 : 8a40             					ora		#%01000000			; disable firq only when fifo f
-fb39 : a764             					sta		4,s
-fb3b : 7c7fe2           					inc 	RbDectCR 			; CR detect on, otherwise the fi
-fb3e : 200f             					bra		_firq3
-fb40 : b77fc0           _firq2				sta     RbHead
-fb43 : b6d000           					lda		DEBUG_MON_PORT
-fb46 : 810d             					cmpa	#CR					; CR compare
-fb48 : 2603             					bne		_firq22
-fb4a : 7c7fe2           					inc 	RbDectCR 			; CR found
-fb4d : a784             _firq22				sta		,x					; store data to RB head pointer
-fb4f : 3516             _firq3				puls	x,d				
-                        
-fb51 :                  IRQ
-fb51 :                  NMI
-fb51 :                  SWI1
-fb51 :                  SWI3			
-fb51 : 3b               SWI2				rti
-                        ;}
-                        
-                        ;{ ---------------------------------------------------
-fff0 =                  					org		ROM_Integrity
-fff0 : fdc1             					dw		CheckSum16
-                        					
-fff2 =                  					org    INT_VECTOR
-                        
-fff2 : fb51             					dw      SWI3
-fff4 : fb51             					dw 		SWI2
-fff6 : fb20             					dw      FIRQ
-fff8 : fb51             					dw      IRQ
-fffa : fb51             					dw      SWI1
-fffc : fb51             					dw      NMI
-fffe : faff             					dw      RESET
-                        ;}
-                        					end
                         
 No errors in pass 2.

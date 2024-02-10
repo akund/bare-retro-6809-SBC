@@ -1,21 +1,18 @@
 
-; SBC system, clock 8.0 Mhz
+; SBC system hardware version 1.0, clock 8.0 MHz
 ; for AS09 Assembler for M6809 [1.42]
 
 ;{ --------------------------------------------------- CPU Memory Mapping -------------------------------------
 ;-----------------------CSRAM-------------------------------------------
 RAM_ORG				equ		$0000
-RAM_END				equ		$7FFF 				;32KB size
+RAM_END				equ		$7FFF 	; max 32KB size
 
-;-----------------------CS0---------------------------------------------
-CS0					equ		$8000
-
-;-----------------------CS1---------------------------------------------
-USB_COM_PORT		equ		$a000
+;-----------------------CS0_1-------------------------------------------
+ROM1_ORG			equ		$8000 	; second SBC ROM, 16K section begin
 
 ;-----------------------CS2---------------------------------------------
-CS2_0				equ		$c000
-CS2_1				equ		$c800
+USB_COM_RD			equ		$c000
+USB_COM_WR			equ		$c800
 UART				equ		$d000
 PORTA				equ		$d800
 CRA					equ		$d801
@@ -23,51 +20,106 @@ PORTB				equ		$d802
 CRB					equ		$d803
 
 ;-----------------------CS3---------------------------------
-ROM_ORG  			equ		$e000 ; second 8K SBC ROM section begin
-MON_ORG  			equ		$f000 ; first 8K SBC ROM section begin
-ROM_Integrity		equ		$fff0 ; SBC_ROM checksum data check (16-bit value)
+ROM0_ORG  			equ		$e000  	; first SBC ROM, 8K section begin
+ROM_Integrity		equ		$fff0 	; SBC ROM0 checksum data check (16-bit value)
 INT_VECTOR			equ		$fff2
 ;}
 
-BSS_SEG_ORG	equ             RAM_END+1 -3-35-1-10-4-14 ;
 
-;{ --------------------------------------------------- RAM Data Segment -----------------------------------------
-					bss						; bss segment is in RAM (hidden in SRec file)
-					org		BSS_SEG_ORG
-BrkPtOff			equ     0
-BrkPtTriggered		equ     1
-BrkPtAddr	  		ds		2				; BrkPtOff, BrkPtTriggered or 16-bit address where is placed the breakpoint
-BrkPtInst       	ds		1				; previous instruction where is placed the breakpoint
-
-RbSize				equ     32
-RbHead		  		ds		1
-RbTail          	ds		1
-Rbuffer				ds		RbSize
-RbDectCR        	ds		1
-
-APLstatus			ds		1
-
-KeyboardRbSize		equ     8
-KeyboardRbHead		ds		1
-KeyboardRbTail     	ds		1
-KeyboardRbuffer		ds		KeyboardRbSize
-
-MonSavReg_S			ds		2				; monitor context saving registers PC, S, U, Y, X, DP, D, CCR 
-BasicCallBack		ds		2				; BASIC call address
-
-	; addresses re-mapping interrupt table
-IntVectSWI3			ds		2
-IntVectSWI2			ds		2
-IntVectFIRQ			ds		2
-IntVectIRQ			ds		2
-IntVectSWI1			ds		2
-IntVectNMI			ds		2
-IntVectSTART		ds		2
-
-;}
-
+; coding convention:
+; normal function paramters are passed by the stack: arg 1 is "2,s", arg 2 is "4,s", ...
+; the returned value is in D
+; the registers X,Y,U need to be saved is modified within the function
+;
+; special function lead by an 's' (e.g. sFUNCTION) is a low level fast assembler execution. The parameters are passed by the registers.
+;
+;{ ----------------------------------- Program Start -----------------------------------------
 					code
-					org     MON_ORG;--------------------------------------------------- 16550 UART ----------------------------------------------------
+					org		ROM0_ORG					
+					
+; declarations for compatibility					
+MONITOR_PROCESS_ID	equ		$10
+BASIC_PROCESS_ID	equ		$20
+CR        			equ  	$0d             	; carriage return
+_GLOBALS			equ		0
+sAPL_KeyboardData
+BASICprocess
+isKeyboardData		rts	
+					
+; configuration DEBUG_MON_PORT linked to UART
+ENABLE_MON_INT		equ		%10111111			; enable firq for monitor
+DEBUG_MON_PORT		equ		UART				; link the debugMonPort to UART
+sMON_PORT_WR		pshs	b
+					lbsr	waitSendDone					
+					puls	b
+					stb		UART				
+					rts
+					
+VERSION         	db      CR,"version 2.0.0.2",CR		; version [major, minor, branch, build]. branch = 0 is a release
+                 	db      "2014-2023, bare Retro 6809 SBC",CR
+					db		"https://github.com/akund/bare-retro-6809-SBC",0
+CheckSum16_ROM0		equ		$d359
+
+RESET           	orcc	#%01010000			; disable all interrrupts in case of software reset
+					lds		#LV_StackBeginAddr
+					
+					; init (clear 16-bit) the re-mapping int vector table
+					ldx		#IntVectSWI3
+					clra
+					clrb
+					std		,x++	;sw3
+					std		,x++	;sw2
+					std		,x++	;firq
+					std		,x++	;irq
+					std		,x++	;sw1
+					std		,x++	;nmi
+					std		,x++	;start
+					
+					lbsr	UART_Init			; initialize the UART
+
+					ldx		#VERSION			; version at boot up
+					lbsr	sPUTSTR
+					
+					ldx		#ROM0_ORG										
+					pshs	x					; push as 1st arg
+					leax	$2000,x				; calculate end addr+2 (8k size)
+					pshs	x					; push as 2nd arg
+					clra
+					clrb
+					subd	ROM_Integrity		; ROM0 initial CheckSum16 is excluded by negating the value
+					pshs	d					; push as 3rd arg (initial value)
+					lbsr	getCheckSum16		; ret value in d
+					leas	6,s					; free the 3 pushes					
+					ldx		#ROM_Integrity
+					lbsr	sROMcheck			; check the ROM integrity															
+					
+					;--------- init peripherals and others --------------------------------;
+					; port A and B initialized with SD Card (requires a minimal delay after the reset)
+					lbsr	SELECTBANK0
+					
+					;---------- initialize monitor resources --------------------------------;
+					lbsr	sMONITORSTART
+					
+;-------------------------------- main program ---------------------------------------------------;	
+					leas	-2,s				; heart beat countdown @ 0,u
+					leau	0,s					
+
+loop				lbsr	sMonProcessCmd		; monitor process call
+					
+					; place your code here
+					
+					;--------- heart beat ~1 sec period -----------------------------------;
+_loop1				ldd		0,u					; get heart beat countdown
+					subd    #1
+					bne     _loop2
+					ldb		#'.'
+					stb		DEBUG_MON_PORT 		; write the dot as life check
+					ldd		#$7fff
+_loop2				std		0,u					; save heart beat countdown					
+					bra		loop
+
+
+;--------------------------------------------------- 16550 UART ----------------------------------------------------
 				code
 				
 ;----------------------------------------------------;
@@ -80,9 +132,9 @@ UART_Init	;{
 				sta		UART+3
 				
 										; 12MHz ->  78:baudrate 9600,                    13:baudrate 57600
-										; 16MHz ->                    26:baudrate 38400, 17:baudrate 57600,  9:baudrate 115200
+										; 16MHz -> 104:baudrate 9600, 26:baudrate 38400, 17:baudrate 57600,  9:baudrate 115200
 										; 24MHz -> 156:baudrate 9600, 39:baudrate 38400, 26:baudrate 57600, 13:baudrate 115200
-				lda		#17
+				lda		#104
 				sta		UART
 				lda		#$00	  	
 				sta		UART+1
@@ -152,7 +204,7 @@ waitCTS ;{
 ;{ --------------------------------------------------- Monitor for debugging over serial port -----------------------------------------
 					code
 					
-MON_VERSION     	db		"0.7.2.0",0			; version [major, minor, branch, build] string ended by NULL. branch = 0 is a release
+MON_VERSION     	db		"0.8.0.0",0			; version [major, minor, branch, build] string ended by NULL. branch = 0 is a release
 					
 ;---------------------------------------------------
 ; write commands menu with version in terminal
@@ -160,18 +212,15 @@ MON_VERSION     	db		"0.7.2.0",0			; version [major, minor, branch, build] strin
 STR_MONITOR      	db      CR,"starting monitor process ID ",0
 STR_VERSION			db		CR,"Monitor for 6809 Computer v",0
 STR_COMMAND			db		CR,"command menu",CR
-					db		"r [first addr], optional [n repeat] -> read the addresses",CR
-					db		"w [addr] [data], optional [n repeat] -> write to the addresses",CR
-					db		"e [src] [dst] [length], optional [protection] -> copy to eeprom memory",CR
-					db		"l or l [offset] -> load a SRec data",CR
-					db		"g [addr] -> execute at the address",CR
-					db		"s [process ID] -> stop the process",CR
-					db		"q -> quit debugging mode",CR
-					db		"b [addr] -> debugging mode, set a breakpoint at the address",CR
-					db		"q -> quit debugging mode",CR
-					db		"B [BASIC line entry]",CR
-					db		"L -> load a BASIC program",CR
-					db		"h -> this menu",CR,0
+					db		"r [first addr] (optional [n repeat]) reads the addresses",CR
+					db		"w [addr] [data], optional [n repeat] writes to the addresses",CR
+					db		"e [src] [dst] [length] (optional [protection]) copies to flash memory",CR
+					db		"l or l [offset] loads a SRec data",CR
+					db		"g [addr] executes at the address",CR
+					db		"s [process ID] stops the process",CR
+					db		"b [addr] sets debugging mode a breakpoint at the address",CR
+					db		"q quits debugging mode",CR
+					db		"h this menu",CR,0
 
 sMONITORSTART		ldd		#BrkPtOff			; init break point variable
 					std		BrkPtAddr										
@@ -267,10 +316,6 @@ sMonProcessCmd
 					lbeq	sCMDbp  			; breakpoint command
 					cmpa	#'q'
 					lbeq	sCMDqbp  			; stop debugging command
-					cmpa	#'B'
-					lbeq	sCMDbas  			; BASIC line entry command
-					cmpa	#'L'
-					lbeq	sCMDldbas			; load BASIC program command
 _sMonProcessCmd		rts  						; cmd no existing
 
 			;----------------------------------------------------;
@@ -372,7 +417,7 @@ WrRepeat			equ		3					; uint repeat
 					beq		_sCMDwrInvalid		; CR shall come later
 					cmpb	#' '
 					bne		_sCMDwrInvalid		
-					cmpx	#ROM_ORG			; avoid write in ROM
+					cmpx	#ROM0_ORG			; avoid write in ROM
 					bhs		_sCMDwrInvalid
 					stx		WrAddr,u 			; save read param 1
 					
@@ -431,7 +476,7 @@ _sCMDwrdone			leas	2,s					; free 16-bit param 3
 					rts							; exit
 
 ;----------------------------------------------------;
-STR_EW1				db		CR,"copy ",0
+STR_EW1				db		CR,"writing ",0
 STR_EW2				db		" byte(s) from ",0
 STR_EW3				db		" to ",0
 STR_EW4				db		", please wait ...",0
@@ -871,17 +916,25 @@ _sExtrEnd        	leas	1,s					; puls, free end param
 ; param: 	X -> pointer
 ; return:	none
 ;----------------------------------------------------;
-sPUTSTR        		ldb		,x+
-					beq		_putstrDone 		; string ends with NULL
-					lbsr	sMON_PORT_WR
-					bra		sPUTSTR
-_putstrDone	  		rts
+sPUTSTR         	pshs	x
+					lbsr	PUTSTR
+					leas	2,s
+					rts
 ;}
 
 
 
 ;{ --------------------------------------------------- Auxiliary Functions ------------------------------------
 					code
+					
+SELECTBANK0			lda		UART+4
+					ora		#%00000001		; clear ROM addr line DTR_n=1
+					sta		UART+4
+					rts					
+SELECTBANK1			lda		UART+4
+					anda	#%11111110		; set ROM addr line DTR_n=0
+					sta		UART+4
+					rts
 					
 ;----------------------------------------------------;
 ; write to EEPROM from RAM
@@ -900,7 +953,7 @@ WriteEEP			pshs	u,y,x				; save used pointers (+6 bytes on stack)
 					beq		_WriteEEP1
 					bsr		DISAXICORWP					
 				
-_WriteEEP1			ldy		4,u					;get the params (X = src, Y = dst)
+_WriteEEP1			ldy		4,u					; get the params (X = src, Y = dst)
 					ldx		6,u	
 					ldd		2,u					; get length value
 					pshs	d					; create a length counter variable to preserve the arg
@@ -909,9 +962,7 @@ _WriteEEP2			lda		,x+
 					cmpa	,y
 					beq		_no_change
 					sta		,y
-					ldd		#3000 				; delay 10ms @ 1.5MHz -> 15000cycles / 6 
-_WriteEEP3			subd	#1			
-					bne		_WriteEEP3 			; eeprom 10 ms write delay loop					
+					lbsr	DELAY_10MS			; eeprom 10 ms delay loop				
 _no_change			leay	1,y					; inc the pointer			
 					ldd		0,s					; dec length counter variable
 					subd	#1
@@ -926,76 +977,83 @@ _no_change			leay	1,y					; inc the pointer
 _WriteEEP5			puls	x,y,u,pc			; restore used registers
 
 ;----------------------------------------------------;
-; asm call remove XICOR 28C64 eeprom write protection
+; asm call remove XICOR 28C64 / 28C256 eeprom write protection
 ; param:  none
 ; return: none
 ;----------------------------------------------------;				
 DISAXICORWP			pshs	ccr,x				; save ccr (for the disabling)
 					orcc	#%01010000			; disable interrupts				
-					ldx 	#$1555+CS0  		;$1555 + base addr 
+					bsr		SELECTBANK1
+					ldx 	#$1555+ROM1_ORG  	; $1555 + base addr / $5555 + base addr
 					lda		#$aa
 					sta		,x
-					ldx 	#$0aaa+CS0
+					bsr		SELECTBANK0
+					ldx 	#$2aaa+ROM1_ORG
 					lda		#$55
 					sta		,x
-					ldx 	#$1555+CS0
+					bsr		SELECTBANK1
+					ldx 	#$1555+ROM1_ORG
 					lda		#$80
 					sta		,x
-					ldx 	#$1555+CS0
+					ldx 	#$1555+ROM1_ORG
 					lda		#$aa
 					sta		,x
-					ldx 	#$0aaa+CS0
+					bsr		SELECTBANK0
+					ldx 	#$2aaa+ROM1_ORG
 					lda		#$55
 					sta		,x
-					ldx 	#$1555+CS0
+					bsr		SELECTBANK1
+					ldx 	#$1555+ROM1_ORG
 					lda		#$20
 					sta		,x				
+					bsr		SELECTBANK0
+					bsr		DELAY_10MS				; eeprom 10 ms delay loop
 					puls	x,ccr,pc				; restore registers
 				
 ;----------------------------------------------------;
-; asm call enable XICOR 28C64 eeprom write protection by re-write a byte
+; asm call enable XICOR 28C64 / 28C256 eeprom write protection by re-write a byte
 ; param:  none
 ; return: none
 ;----------------------------------------------------;				
 ENAXICORWP			pshs	ccr,x				; save ccr (for the disabling)
 					orcc	#%01010000			; disable interrupts				
-					ldb		CS0					; get the byte
-					ldx 	#$1555+CS0  		;$1555 + base addr 
+					ldb		ROM1_ORG			; get the byte
+					bsr		SELECTBANK1
+					ldx 	#$1555+ROM1_ORG  	;$1555 + base addr 
 					lda		#$aa
 					sta		,x
-					ldx 	#$0aaa+CS0
+					bsr		SELECTBANK0
+					ldx 	#$2aaa+ROM1_ORG
 					lda		#$55
 					sta		,x
-					ldx 	#$1555+CS0
+					bsr		SELECTBANK1
+					ldx 	#$1555+ROM1_ORG
 					lda		#$a0
 					sta		,x
-					; write the byte
-					ldx 	#CS0				; get the byte addr
-					stb		,x
-					ldd		#3000 				; delay 10ms @ 1.5MHz -> 15000cycles / 6 
-_ENAX_1				subd	#1				
-					bne		_ENAX_1 			; eeprom 1 ms write delay loop
+					bsr		SELECTBANK0
+					; re-write the byte
+					stb		ROM1_ORG ;,x
+					bsr		DELAY_10MS			; eeprom 10 ms delay loop
 					puls	x,ccr,pc			; restore registers
+
+DELAY_10MS			ldd		#3000 				; delay 10ms @ 2.0MHz -> 20000 cycles = 3000 loop * 6 cycles
+_DELAY_10MS			subd	#1			
+					bne		_DELAY_10MS			; eeprom 10 ms delay loop	
+					rts
 
 ;----------------------------------------------------;
 ; asm call ROM integrity check
-; param:  X -> CheckSum16 begin addr
-; return: none
+; param:  D -> CheckSum16 calculated value
+;         X -> CheckSum16 addr
+; return: 0 -> B when succeed
 ;----------------------------------------------------;
-ROMcheckSTR0		db		"ROM verified",0
+ROMcheckSTR0		db		13,"ROM verified",CR,0
 ROMcheckSTR1		db		13,"CheckSum16 ",0
 ROMcheckSTR2		db		" was calculated instead ",0
-ROMcheckSTR3		db		", ROM failure!",0
-sROMcheck			pshs	x					; push as 1st arg
-					clra						; set CheckSum16 ROM's end wrapped to addr 0
-					clrb
-					pshs	d					; push as 2nd arg
-					subd	ROM_Integrity		; initial CheckSum16 is excluded by negative value
-					pshs	d					; push as 3rd arg			
-					lbsr	getCheckSum16
-					leas	6,s					; free the 3 args
-					cmpd	ROM_Integrity
+ROMcheckSTR3		db		", ROM failure!",CR,0
+sROMcheck			cmpd	,x
 					beq		_sROMok
+					pshs	x					; save							
 					pshs	d					; param for HEXWORD2MONPORT							
 					ldx		#ROMcheckSTR1
 					lbsr	sPUTSTR
@@ -1003,16 +1061,18 @@ sROMcheck			pshs	x					; push as 1st arg
 					leas	2,s					; free the last push
 					ldx		#ROMcheckSTR2
 					lbsr	sPUTSTR
-					ldd		ROM_Integrity
+					puls    x
+					ldd		,x
 					pshs	d					; param for HEXWORD2MONPORT							
 					lbsr	HEXWORD2MONPORT
 					leas	2,s					; free the last push					
 					ldx		#ROMcheckSTR3		; failure
 					lbsr	sPUTSTR
+					ldb		#1					; non zero return value
 					bra		sROMcheckdone		; to be removed		
-_sROMerror			bra		_sROMerror
 _sROMok				ldx		#ROMcheckSTR0		; success
-					lbsr	sPUTSTR			
+					lbsr	sPUTSTR
+					clrb						; zero return value
 sROMcheckdone		rts
 
 ;----------------------------------------------------;
@@ -1070,7 +1130,8 @@ sWLSL4bit	       	lslb
 ; param: 	2,s -> string pointer
 ; return:	none
 ;----------------------------------------------------;
-PUTSTR	         	pshs	x				; +2 bytes on stack
+PUTSTR
+print_De   			pshs	x				; +2 bytes on stack
 					ldx		4,s
 _putstr0			ldb		,x+
 					beq		_putstr1 		; string ends with NULL
@@ -1191,107 +1252,103 @@ sTEXT2HEX_1      	cmpa	#'F'
 					bra     sTEXT2HEX_2
 sTEXT2HEX_11     	suba	#$57				;for lower case letter
 sTEXT2HEX_2			rts
-; coding convention:
-; normal function paramters are passed by the stack: arg 1 is "2,s", arg 2 is "4,s", ...
-; the returned value is in D
-; the registers X,Y,U need to be saved is modified within the function
-;
-; special function lead by an 's' (e.g. sFUNCTION) is a low level fast assembler execution. The parameters are passed by the registers.
-;
-;{ ----------------------------------- Program Start -----------------------------------------
-					code
-					
-MONITOR_PROCESS_ID	equ		$10
-BASIC_PROCESS_ID	equ		$20
-CR        			equ  	$0d             	; carriage return
-
-; configuration DEBUG_MON_PORT linked to UART
-ENABLE_MON_INT		equ		%10111111			; enable firq for monitor
-DEBUG_MON_PORT		equ		UART				; link the debugMonPort to UART
-sMON_PORT_WR		pshs	b
-					lbsr	waitSendDone
-					lbsr	waitCTS
-					puls	b
-					stb		DEBUG_MON_PORT		; use the defined monitor port					
-; dummy routines
-sAPL_KeyboardData
-BASICprocess
-isKeyboardData
-					rts						
-
-VERSION         	db      CR,"bare retro 6809 SBC version 1.5.1.0, 2014-2021 Adrian Kundert",CR		; version [major, minor, branch, build] string ended by NULL. branch = 0 is a release
-					db		"https://github.com/akund/retro-6809-SBC",CR,0
-CheckSum16			equ		$fdc1
-
-RESET           	orcc	#%01010000			; disable all interrrupts in case of software reset
-					lds		#BSS_SEG_ORG				
-					
-					lbsr	UART_Init			; initialize the UART
-
-					ldx		#VERSION			; version at boot up
-					lbsr	sPUTSTR
-					
-					ldx		#ROM_ORG					
-					lbsr	sROMcheck			; check the ROM integrity					
-					
-					;---------- initialize monitor resources ----------------------------;
-					lbsr	sMONITORSTART
-					
-					leas	-2,s				; heart beat countdown @ 0,u
-					leau	0,s					
-
-;-------------------------------- main loop ---------------------------------------------------;	
-loop				lbsr	sMonProcessCmd		; monitor process call
-					
-					; place your code here
-					
-					bra		loop
-
-
 ;Interrupt service routines
-;{ --------------------------------------------------- IRQs ---------------------------------------------------
-FIRQ	  			pshs	x,d
-					ldx     #Rbuffer			; get buffer base addr				
-					lda		RbHead				; head index value
-					leax	a,x					; set X to the head pointer
-					inca				
-					cmpa	#RbSize
-					blo		_firq1
-					clra
-_firq1			    cmpa	RbTail
-					bne		_firq2				; stop filling before reaching the tail index
-					lda		4,s					; modify the stacked CCR
-					ora		#%01000000			; disable firq only when fifo full
-					sta		4,s
-					inc 	RbDectCR 			; CR detect on, otherwise the fifo content will never be processed				
-					bra		_firq3
-_firq2				sta     RbHead
-					lda		DEBUG_MON_PORT
-					cmpa	#CR					; CR compare
-					bne		_firq22
-					inc 	RbDectCR 			; CR found
-_firq22				sta		,x					; store data to RB head pointer
-_firq3				puls	x,d				
+				code
+				
+;{ --------------------------------------------------- IRQs ---------------------------------------------------			
+FIRQ  			tst		IntVectFIRQ			; cmp the new vector stored
+				bne		_firq
+				tst		IntVectFIRQ+1		; cmp the new vector stored
+				beq		_firq0
+_firq			jmp		[IntVectFIRQ]		; execute the re-mapped isr
+_firq0			pshs	x,d
+				ldx     #Rbuffer			; get buffer base addr				
+				lda		RbHead				; head index value
+				leax	a,x					; set X to the head pointer
+				inca				
+				cmpa	#RbSize
+				blo		_firq1
+				clra
+_firq1			cmpa	RbTail
+				bne		_firq2				; stop filling before reaching the tail index
+				lda		4,s					; modify the stacked CCR
+				ora		#%01000000			; disable firq only when fifo full
+				sta		4,s
+				inc 	RbDectCR 			; CR detect on, otherwise the fifo content will never be processed				
+				bra		_firq3
+_firq2			sta     RbHead
+				lbsr 	UartRead
+				tsta
+				beq		_firq22
+				cmpb	#CR					; CR compare
+				bne		_firq22
+				inc 	RbDectCR 			; CR found
+_firq22			stb		,x					; store data to RB head pointer
+_firq3			puls	x,d	
 
 IRQ
 NMI
 SWI1
 SWI3			
-SWI2				rti
+SWI2			rti
 ;}
 
 ;{ --------------------------------------------------- vector table ---------------------------------------------------
-					org		ROM_Integrity
-					dw		CheckSum16
-					
-					org    INT_VECTOR
+				org		ROM_Integrity
+				dw		CheckSum16_ROM0
+				
+				org    INT_VECTOR
 
-					dw      SWI3
-					dw 		SWI2
-					dw      FIRQ
-					dw      IRQ
-					dw      SWI1
-					dw      NMI
-					dw      RESET
+				dw      SWI3
+				dw 		SWI2
+				dw      FIRQ
+				dw      IRQ
+				dw      SWI1
+				dw      NMI
+				dw      RESET
 ;}
-					end
+				end
+
+
+;{ ---------------------- asm Global Variables and Stack declarations -----------------------------------------------
+					
+BSS_SEG_ORG			equ     RAM_END+1 -3-35-1-10-4-14 			; asm global variables
+GV_StackBeginAddr	equ		BSS_SEG_ORG							; C global variables stack (Y pointer)
+LV_StackBeginAddr	equ		BSS_SEG_ORG - _GLOBALS				; local variables stack
+
+;{ --------------------------------------------------- RAM Data Segment -----------------------------------------
+					bss						; bss segment is in RAM (hidden in SRec file)
+					org		BSS_SEG_ORG
+BrkPtOff			equ     0
+BrkPtTriggered		equ     1
+BrkPtAddr	  		ds		2				; BrkPtOff, BrkPtTriggered or 16-bit address where is placed the breakpoint
+BrkPtInst       	ds		1				; previous instruction where is placed the breakpoint
+
+RbSize				equ     32
+RbHead		  		ds		1
+RbTail          	ds		1
+Rbuffer				ds		RbSize
+RbDectCR        	ds		1
+
+APLstatus			ds		1
+
+KeyboardRbSize		equ     8
+KeyboardRbHead		ds		1
+KeyboardRbTail     	ds		1
+KeyboardRbuffer		ds		KeyboardRbSize
+
+MonSavReg_S			ds		2				; monitor context saving registers PC, S, U, Y, X, DP, D, CCR 
+BasicCallBack		ds		2				; BASIC call address
+
+	; addresses re-mapping interrupt table
+IntVectSWI3			ds		2
+IntVectSWI2			ds		2
+IntVectFIRQ			ds		2
+IntVectIRQ			ds		2
+IntVectSWI1			ds		2
+IntVectNMI			ds		2
+IntVectSTART		ds		2
+
+;}		
+
+
